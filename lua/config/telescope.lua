@@ -11,6 +11,7 @@ local function keymaps()
   keymap("n", "gsb", "<cmd>lua require'telescope.builtin'.lsp_document_symbols()<CR>")
   keymap("n", "gsw", "<cmd>lua require'telescope.builtin'.lsp_workspace_symbols()<CR>")
   keymap("n", "gsdw", "<cmd>lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()<CR>")
+  keymap("n", "<leader><leader>", "<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>")
 end
 
 -- Custom actions
@@ -137,7 +138,7 @@ function M.setup()
   telescope.load_extension("project") -- telescope-project.nvim
   telescope.load_extension("repo")
   telescope.load_extension("file_browser")
-  -- telescope.load_extension "projects" -- project.nvim
+  telescope.load_extension("projects") -- project.nvim
   telescope.load_extension("dap")
   telescope.load_extension("frecency")
 
