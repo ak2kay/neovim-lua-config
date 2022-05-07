@@ -19,7 +19,6 @@ end
 
 function M.format()
   if M.autoformat then
-    -- vim.lsp.buf.formatting_sync(nil, 2000) -- deprecated
     vim.lsp.buf.formatting({
       async = true,
       -- NOTE: some lsp don't support this syntax

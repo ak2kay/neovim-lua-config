@@ -7,7 +7,9 @@ function M.setup()
       enter_on_sendcmd = true,
     },
   })
-  require("telescope").load_extension("harpoon")
+  if PLUGINS.telescope.enabled then
+    require("telescope").load_extension("harpoon")
+  end
 end
 
 return M

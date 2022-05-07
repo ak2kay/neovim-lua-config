@@ -5,8 +5,10 @@ local function keymaps()
   keymap("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>")
   keymap("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
   keymap("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>")
-  --  Only set if you have telescope installed
-  keymap("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>")
+
+  if PLUGINS.telescope.enabled then
+    keymap("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>")
+  end
 end
 
 function M.setup()

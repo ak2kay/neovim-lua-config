@@ -1,23 +1,5 @@
 local M = {}
 
--- local library = {}
---
--- local path = vim.split(package.path, ";")
---
--- -- this is the ONLY correct way to setup your path
--- table.insert(path, "lua/?.lua")
--- table.insert(path, "lua/?/init.lua")
---
--- local function add(lib)
---   for _, p in pairs(vim.fn.expand(lib, false, true)) do
---     p = vim.loop.fs_realpath(p)
---     library[p] = true
---   end
--- end
---
--- -- add runtime
--- add "$VIMRUNTIME"
-
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -96,11 +78,6 @@ local function on_attach(client, bufnr)
 
   -- Configure formatting
   require("config.lsp.null-ls.formatters").setup(client, bufnr)
-
-  -- Configure for Typescript
-  -- if client.name == "tsserver" then
-  --   require("config.lsp.ts-utils").setup(client)
-  -- end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

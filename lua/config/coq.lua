@@ -19,8 +19,8 @@ function M.setup()
   -- 3party sources
   coq_3p({
     { src = "copilot", short_name = "COP", accept_key = "<C-y>" },
-    { src = "nvimlua", short_name = "nLUA", conf_only = false }, -- Lua
-    { src = "figlet", trigger = "!big" }, -- figlet command
+    { src = "nvimlua", short_name = "nLUA", conf_only = false },
+    { src = "figlet", trigger = "!big" }, -- ascii art
     {
       src = "repl",
       sh = "zsh",

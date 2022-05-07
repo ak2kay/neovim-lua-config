@@ -9,7 +9,10 @@ function M.setup()
       go = true,
     },
   })
+  if PLUGINS.telescope.enabled then
+
   require("telescope").load_extension("refactoring")
+  end
 end
 
 return M
