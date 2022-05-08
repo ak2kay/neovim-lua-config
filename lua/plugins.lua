@@ -70,6 +70,7 @@ function M.setup()
       config = function()
         vim.cmd("colorscheme neobones")
       end,
+      disable = false,
     })
     use({
       "norcalli/nvim-colorizer.lua",
@@ -418,7 +419,8 @@ function M.setup()
       use({
         "neovim/nvim-lspconfig",
         opt = true,
-        event = "VimEnter",
+        -- event = "VimEnter",
+        event = "BufReadPre",
         wants = {
           "nvim-lsp-installer",
           "coq_nvim",
@@ -496,7 +498,8 @@ function M.setup()
       use({
         "neovim/nvim-lspconfig",
         opt = true,
-        event = "VimEnter",
+        -- event = "VimEnter",
+        event = "BufRead",
         wants = {
           "nvim-lsp-installer",
           "cmp-nvim-lsp",
