@@ -207,7 +207,7 @@ function M.setup()
     -- Motions
     use({ "andymass/vim-matchup", event = "CursorMoved" })
     use({ "wellle/targets.vim", event = "CursorMoved" })
-    use({ "unblevable/quick-scope", event = "CursorMoved", disable = false })
+    use({ "unblevable/quick-scope", event = "CursorMoved", disable = true })
     use({ "chaoren/vim-wordmotion", opt = true, fn = { "<Plug>WordMotion_w" } })
 
     -- Buffer
