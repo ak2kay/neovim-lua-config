@@ -41,8 +41,8 @@ opt.wildignorecase = true
 opt.wildignore:append("**/node_modules/*")
 opt.wildignore:append("**/.git/*")
 
--- make tab completion in cmdline work
-cmd("set nocompatible")
+cmd("set autoread")
+cmd("set nowrap")
 
 -- Treesitter based folding
 cmd([[
