@@ -427,12 +427,15 @@ function M.setup()
           "lua-dev.nvim",
           "vim-illuminate",
           "null-ls.nvim",
-          "schemastore.nvim",
           "typescript.nvim",
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
         },
         config = function()
+          require("nvim-lsp-installer").setup({
+            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver" },
+            automatic_installation = true,
+          })
           require("config.lsp").setup()
         end,
         requires = {
@@ -446,7 +449,6 @@ function M.setup()
               require("fidget").setup({})
             end,
           },
-          "b0o/schemastore.nvim",
           "jose-elias-alvarez/typescript.nvim",
           {
             "rmagatti/goto-preview",
@@ -506,12 +508,15 @@ function M.setup()
           "lua-dev.nvim",
           "vim-illuminate",
           "null-ls.nvim",
-          "schemastore.nvim",
           "typescript.nvim",
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
         },
         config = function()
+          require("nvim-lsp-installer").setup({
+            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver" },
+            automatic_installation = true,
+          })
           require("config.lsp").setup()
         end,
         requires = {
@@ -525,7 +530,6 @@ function M.setup()
               require("fidget").setup({})
             end,
           },
-          "b0o/schemastore.nvim",
           "jose-elias-alvarez/typescript.nvim",
           {
             "rmagatti/goto-preview",

@@ -1,3 +1,5 @@
+local lspconfig = require("lspconfig")
+
 local M = {}
 
 local runtime_path = vim.split(package.path, ";")
@@ -6,14 +8,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 local servers = {
   gopls = {},
-  html = {},
-  jsonls = {
-    settings = {
-      json = {
-        schemas = require("schemastore").json.schemas(),
-      },
-    },
-  },
+  jsonls = {},
   pyright = {},
   rust_analyzer = {
     settings = {
@@ -87,7 +82,7 @@ if PLUGINS.nvim_cmp.enabled then
   capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
 end
 
-local opts = {
+local default_ops = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -99,11 +94,30 @@ local opts = {
 require("config.lsp.handlers").setup()
 
 function M.setup()
-  -- null-ls
-  require("config.lsp.null-ls").setup(opts)
+  for server_name, custom_opts in pairs(servers) do
+    local opts = vim.tbl_deep_extend("force", default_ops, custom_opts)
 
-  -- Installer
-  require("config.lsp.installer").setup(servers, opts)
+    if server_name == "sumneko_lua" then
+      opts = require("lua-dev").setup({ lspconfig = opts })
+    end
+
+    if PLUGINS.coq.enabled then
+      local coq = require("coq")
+      opts = coq.lsp_ensure_capabilities(opts)
+    end
+
+    if server_name == "rust_analyzer" then
+      require("rust-tools").setup({
+        server = opts,
+      })
+    elseif server_name == "tsserver" then
+      require("typescript").setup({ server = opts })
+    else
+      lspconfig[server_name].setup(opts)
+    end
+  end
+  -- null-ls
+  require("config.lsp.null-ls").setup(default_ops)
 end
 
 return M
