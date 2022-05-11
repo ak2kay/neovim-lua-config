@@ -44,9 +44,7 @@ opt.wildignore:append("**/.git/*")
 cmd("set autoread")
 cmd("set nowrap")
 
--- Treesitter based folding
-cmd([[
-  set foldlevel=20
-  set foldmethod=expr
-  set foldexpr=nvim_treesitter#foldexpr()
-]])
+opt.foldmethod = "expr"
+opt.foldlevel = 5
+opt.foldlevelstart = 5
+opt.foldexpr = "nvim_treesitter#foldexpr()"
