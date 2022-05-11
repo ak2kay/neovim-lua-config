@@ -123,12 +123,12 @@ function M.setup()
       }),
     },
     sources = {
-      { name = "buffer", max_item_count = 4, priority = 1 },
-      { name = "treesitter", max_item_count = 4, priotiry = 1 },
-      { name = "nvim_lsp", max_item_count = 6, priority = 3 },
-      { name = "nvim_lua", max_item_count = 4, priority = 3 },
+      { name = "buffer", max_item_count = 4, priority = 3 },
+      { name = "treesitter", max_item_count = 4, priority = 1 },
+      { name = "nvim_lsp", max_item_count = 6, priority = 2 },
+      { name = "nvim_lua", max_item_count = 4, priority = 2 },
       { name = "luasnip", max_item_count = 2, priority = 5 },
-      { name = "path", max_item_count = 2, priotiry = 2 },
+      { name = "path", max_item_count = 2, priority = 4 },
       { name = "nvim_lsp_signature_help" },
       {
         name = "look",
@@ -138,7 +138,7 @@ function M.setup()
           convert_case = true,
           loud = true,
         },
-        priotiry = 2,
+        priority = 1,
       },
     },
     window = {
