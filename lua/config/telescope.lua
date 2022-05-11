@@ -4,7 +4,6 @@ local function keymaps()
   local keymap = require("utils").set_keymap
   keymap("n", "<C-p>", "<cmd>lua require'telescope.builtin'.find_files({hidden=true})<CR>")
   keymap("n", "gr", "<cmd>lua require'telescope.builtin'.lsp_references()<CR>")
-  keymap("n", "ga", "<cmd>lua require'telescope.builtin'.lsp_code_actions()<CR>")
   keymap("n", "gd", "<cmd>lua require'telescope.builtin'.lsp_definitions()<CR>")
   keymap("n", "gvd", "<cmd>lua require'telescope.builtin'.lsp_type_definitions()<CR>")
   keymap("n", "gi", "<cmd>lua require'telescope.builtin'.lsp_implementations()<CR>")

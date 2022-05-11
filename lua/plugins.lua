@@ -430,6 +430,7 @@ function M.setup()
           "typescript.nvim",
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
+          "nvim-lightbulb",
         },
         config = function()
           require("nvim-lsp-installer").setup({
@@ -463,6 +464,12 @@ function M.setup()
               require("config.code-action-menu").setup()
             end,
           }, -- https://github.com/weilbith/nvim-code-action-menu
+          {
+            "kosayoda/nvim-lightbulb",
+            config = function()
+              require("config.lightbulb").setup()
+            end,
+          },
         },
       })
     end
@@ -511,6 +518,7 @@ function M.setup()
           "typescript.nvim",
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
+          "nvim-lightbulb",
         },
         config = function()
           require("nvim-lsp-installer").setup({
@@ -527,6 +535,7 @@ function M.setup()
           {
             "j-hui/fidget.nvim",
             config = function()
+              require("config.fidget").setup()
               require("fidget").setup({})
             end,
           },
@@ -544,6 +553,12 @@ function M.setup()
               require("config.code-action-menu").setup()
             end,
           }, -- https://github.com/weilbith/nvim-code-action-menu
+          {
+            "kosayoda/nvim-lightbulb",
+            config = function()
+              require("config.lightbulb").setup()
+            end,
+          },
         },
       })
     end

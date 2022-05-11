@@ -39,10 +39,10 @@ local sources = {
   with_diagnostics_code(b.diagnostics.shellcheck),
 
   -- code actions
-  b.code_actions.gitsigns,
-  b.code_actions.eslint_d,
-  b.code_actions.gitrebase,
-  b.code_actions.refactoring,
+  -- b.code_actions.gitsigns,
+  -- b.code_actions.eslint_d,
+  -- b.code_actions.gitrebase,
+  -- b.code_actions.refactoring,
 
   -- hover
   b.hover.dictionary,
