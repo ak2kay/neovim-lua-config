@@ -749,6 +749,13 @@ function M.setup()
       disable = true,
     })
 
+    -- markdown lint
+    use({
+      "hotoo/pangu.vim",
+      opt = true,
+      ft = { "markdown" },
+    })
+
     -- Bootstrap Neovim
     if packer_bootstrap then
       print("Restart Neovim required after installation!")
