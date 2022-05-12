@@ -205,7 +205,9 @@ function M.setup()
     use({ "tpope/vim-surround", event = "InsertEnter" })
 
     -- Motions
+    -- better % match
     use({ "andymass/vim-matchup", event = "CursorMoved" })
+    -- additional text objects
     use({ "wellle/targets.vim", event = "CursorMoved" })
     use({ "unblevable/quick-scope", event = "CursorMoved", disable = true })
     use({ "chaoren/vim-wordmotion", opt = true, fn = { "<Plug>WordMotion_w" } })
