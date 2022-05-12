@@ -9,21 +9,21 @@ if vim.fn.has("nvim-0.7") then
   })
 
   -- show cursor line only in active window
-  local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
-  api.nvim_create_autocmd(
-    { "InsertLeave", "WinEnter" },
-    { pattern = "*", command = "set cursorline", group = cursorGrp }
-  )
-  api.nvim_create_autocmd(
-    { "InsertEnter", "WinLeave" },
-    { pattern = "*", command = "set nocursorline", group = cursorGrp }
-  )
+  -- local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
+  -- api.nvim_create_autocmd(
+  --   { "InsertLeave", "WinEnter" },
+  --   { pattern = "*", command = "set cursorline", group = cursorGrp }
+  -- )
+  -- api.nvim_create_autocmd(
+  --   { "InsertEnter", "WinLeave" },
+  --   { pattern = "*", command = "set nocursorline", group = cursorGrp }
+  -- )
 
   -- go to last loc when opening a buffer
-  api.nvim_create_autocmd(
-    "BufReadPost",
-    { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
-  )
+  -- api.nvim_create_autocmd(
+  --   "BufReadPost",
+  --   { command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
+  -- )
 
   -- Check if we need to reload the file when it changed
   api.nvim_create_autocmd("FocusGained", { command = [[:checktime]] })
@@ -37,6 +37,9 @@ if vim.fn.has("nvim-0.7") then
 
   -- don't auto comment new line
   api.nvim_create_autocmd("BufEnter", { command = [[set formatoptions-=cro]] })
+
+  -- make starlark file python type
+  api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, { pattern = "*.star", command = [[set filetype=python]] })
 else
   local cmd = vim.cmd
 
@@ -49,15 +52,15 @@ else
   ]])
 
   -- show cursor line only in active window
-  cmd([[
-    autocmd InsertLeave,WinEnter * set cursorline
-    autocmd InsertEnter,WinLeave * set nocursorline
-  ]])
+  -- cmd([[
+  --   autocmd InsertLeave,WinEnter * set cursorline
+  --   autocmd InsertEnter,WinLeave * set nocursorline
+  -- ]])
 
   -- go to last loc when opening a buffer
-  cmd([[
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-  ]])
+  -- cmd([[
+  --   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
+  -- ]])
 
   -- Check if we need to reload the file when it changed
   cmd("au FocusGained * :checktime")
@@ -68,4 +71,7 @@ else
 
   -- don't auto comment new line
   cmd([[autocmd BufEnter * set formatoptions-=cro]])
+
+  -- make starlark file python type
+  cmd([[autocmd BufNewFile,BufRead *.star set filetype=python]])
 end
