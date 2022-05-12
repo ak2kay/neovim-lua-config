@@ -46,6 +46,7 @@ local servers = {
     },
   },
   tsserver = { disable_formatting = true },
+  yamlls = {},
 }
 
 -- local lsp_signature = require "lsp_signature"

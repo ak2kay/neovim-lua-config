@@ -434,7 +434,7 @@ function M.setup()
         },
         config = function()
           require("nvim-lsp-installer").setup({
-            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver" },
+            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver", "yamlls" },
             automatic_installation = true,
           })
           require("config.lsp").setup()
@@ -522,7 +522,7 @@ function M.setup()
         },
         config = function()
           require("nvim-lsp-installer").setup({
-            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver" },
+            ensure_installed = { "rust_analyzer", "sumneko_lua", "gopls", "tsserver", "yamlls" },
             automatic_installation = true,
           })
           require("config.lsp").setup()
