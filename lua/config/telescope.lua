@@ -99,28 +99,15 @@ function M.setup()
       },
       mappings = {
         i = {
-          ["<C-n>"] = actions.move_selection_next,
-          ["<C-p>"] = actions.move_selection_previous,
           ["<C-j>"] = actions.cycle_history_next,
           ["<C-k>"] = actions.cycle_history_prev,
-          ["<c-z>"] = trouble.open_with_trouble,
+          ["<c-t>"] = trouble.open_with_trouble,
         },
       },
     },
     pickers = {
       find_files = {
         theme = "ivy",
-        mappings = {
-          n = {
-            ["y"] = path_actions.file_path,
-          },
-          i = {
-            ["<C-y>"] = path_actions.file_path,
-          },
-        },
-      },
-      git_files = {
-        theme = "dropdown",
         mappings = {
           n = {
             ["y"] = path_actions.file_path,
