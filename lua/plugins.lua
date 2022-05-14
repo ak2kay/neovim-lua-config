@@ -652,10 +652,13 @@ function M.setup()
     -- AI completion
     use({
       "github/copilot.vim",
-      event = "InsertEnter",
+      -- This ensures that in insert mode, telescope.nvim will no longer complain about keymap assert errors when
+      -- pressing tab.
+      after = "telescope.nvim",
       config = function()
         require("config.copilot").setup()
       end,
+      disable = false,
     })
 
     -- Legendary
