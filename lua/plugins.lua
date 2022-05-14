@@ -260,6 +260,13 @@ function M.setup()
         require("nvim-gps").setup()
       end,
     })
+    use({
+      "b0o/incline.nvim",
+      event = "BufReadPre",
+      config = function()
+        require("incline").setup()
+      end,
+    })
 
     -- Treesitter
     use({
