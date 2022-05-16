@@ -440,6 +440,7 @@ function M.setup()
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
           "nvim-lightbulb",
+          "schemastore.nvim",
         },
         config = function()
           require("nvim-lsp-installer").setup({
@@ -479,6 +480,7 @@ function M.setup()
               require("config.lightbulb").setup()
             end,
           },
+          "b0o/schemastore.nvim",
         },
       })
     end
@@ -528,6 +530,7 @@ function M.setup()
           "goto-preview", -- https://github.com/rmagatti/goto-preview
           "nvim-code-action-menu", -- https://github.com/weilbith/nvim-code-action-menu
           "nvim-lightbulb",
+          "schemastore.nvim",
         },
         config = function()
           require("nvim-lsp-installer").setup({
@@ -568,6 +571,7 @@ function M.setup()
               require("config.lightbulb").setup()
             end,
           },
+          "b0o/schemastore.nvim",
         },
       })
     end

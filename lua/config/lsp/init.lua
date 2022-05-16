@@ -8,7 +8,13 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 local servers = {
   gopls = {},
-  jsonls = {},
+  jsonls = {
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+      },
+    },
+  },
   pyright = {},
   rust_analyzer = {
     settings = {
