@@ -6,6 +6,7 @@ local function keymaps(client, bufnr)
 
   buf_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  buf_keymap(bufnr, "n", "gf", "<cmd>lua vim.lsp.buf.formatting()<CR>")
   keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
   keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
   keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")

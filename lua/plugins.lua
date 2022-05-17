@@ -548,7 +548,7 @@ function M.setup()
             "j-hui/fidget.nvim",
             config = function()
               require("config.fidget").setup()
-              require("fidget").setup({})
+              require("fidget").setup()
             end,
           },
           "jose-elias-alvarez/typescript.nvim",

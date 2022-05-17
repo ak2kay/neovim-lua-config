@@ -43,6 +43,7 @@ opt.wildignore:append("**/.git/*")
 opt.foldmethod = "expr"
 opt.foldlevel = 5
 opt.foldlevelstart = 5
+opt.foldnestmax = 5
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 opt.swapfile = false

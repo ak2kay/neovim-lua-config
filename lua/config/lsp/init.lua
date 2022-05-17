@@ -6,14 +6,22 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local servers = {
-  gopls = {},
-  jsonls = {
-    settings = {
+local function get_json_schemas()
+  local ok, schemas = pcall(require, "schemastore")
+  if ok then
+    return {
       json = {
         schemas = require("schemastore").json.schemas(),
       },
-    },
+    }
+  end
+  return {}
+end
+
+local servers = {
+  gopls = {},
+  jsonls = {
+    settings = get_json_schemas(),
   },
   pyright = {},
   rust_analyzer = {
