@@ -6,6 +6,7 @@ opt.number = true --Make line numbers default
 opt.relativenumber = true --Make relative number default
 opt.mouse = "" --Disable mouse mode
 opt.breakindent = true --Enable break indent
+opt.smartindent = true -- smart indent when start a new line
 opt.undofile = true --Save undo history
 opt.ignorecase = true --Case insensitive searching unless /C or capital in search
 opt.smartcase = true -- Smart case

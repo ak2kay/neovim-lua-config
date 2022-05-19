@@ -11,7 +11,7 @@ local function get_json_schemas()
   if ok then
     return {
       json = {
-        schemas = require("schemastore").json.schemas(),
+        schemas = schemas.json.schemas(),
       },
     }
   end
