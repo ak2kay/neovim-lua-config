@@ -10,6 +10,7 @@ opt.smartindent = true -- smart indent when start a new line
 opt.undofile = true --Save undo history
 opt.ignorecase = true --Case insensitive searching unless /C or capital in search
 opt.smartcase = true -- Smart case
+opt.colorcolumn = "80"
 opt.updatetime = 100 --Decrease update time
 opt.signcolumn = "yes" -- Always show sign column
 opt.cmdheight = 2
@@ -47,6 +48,7 @@ opt.foldlevelstart = 5
 opt.foldnestmax = 5
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 
+opt.compatible = false
 opt.swapfile = false
 opt.wrap = false
 opt.autoread = true
