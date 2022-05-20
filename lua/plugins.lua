@@ -58,9 +58,9 @@ function M.setup()
 
     -- Colorscheme
     use({
-      "folke/tokyonight.nvim",
+      "sainnhe/everforest",
       config = function()
-        vim.cmd("colorscheme tokyonight")
+        vim.cmd("colorscheme everforest")
       end,
       disable = true,
     })
