@@ -81,3 +81,4 @@ local options = {
 nvimtree.setup(options)
 
 utils_g.set_keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
+utils_g.set_keymap("n", "<leader>f", "<cmd>NvimTreeFocus<CR>")
