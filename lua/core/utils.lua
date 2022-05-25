@@ -29,6 +29,16 @@ utils_g.buf_set_keymap = function(bufnr, mode, lhs, rhs, opts)
    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
 end
 
+-- load plugin after entering vim ui
+utils_g.packer_lazy_load = function(plugin, timer)
+   if plugin then
+      timer = timer or 0
+      vim.defer_fn(function()
+         require("packer").loader(plugin)
+      end, timer)
+   end
+end
+
 utils_g.log = function(msg, hl, name)
    name = name or "Neovim"
    hl = hl or "Todo"

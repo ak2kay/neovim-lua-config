@@ -1,14 +1,17 @@
 local plugins = {
 
-   ["nvim-lua/plenary.nvim"] = {},
+   -- Performance
    ["lewis6991/impatient.nvim"] = {},
+   ["nathom/filetype.nvim"] = {},
+   ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
+
+   ["nvim-lua/plenary.nvim"] = {},
    ["wbthomason/packer.nvim"] = {},
 
-   -- Notification
-   ["rcarriga/nvim-notify"] = {
-      event = "VimEnter",
+   -- Startup screen
+   ["goolord/alpha-nvim"] = {
       config = function()
-         vim.notify = require "notify"
+         require "plugins.configs.alpha"
       end,
    },
 
@@ -67,11 +70,11 @@ local plugins = {
          require "plugins.configs.vista"
       end,
    },
-
-   -- Startup screen
-   ["goolord/alpha-nvim"] = {
+   -- Notification
+   ["rcarriga/nvim-notify"] = {
+      event = "VimEnter",
       config = function()
-         require "plugins.configs.alpha"
+         vim.notify = require "notify"
       end,
    },
    -- Git
@@ -100,19 +103,6 @@ local plugins = {
          require("gitlinker").setup { mappings = nil }
       end,
    },
-   ["pwntester/octo.nvim"] = {
-      cmd = "Octo",
-      wants = { "telescope.nvim", "plenary.nvim", "nvim-web-devicons" },
-      requires = {
-         "nvim-lua/plenary.nvim",
-         "nvim-telescope/telescope.nvim",
-         "kyazdani42/nvim-web-devicons",
-      },
-      config = function()
-         require "octo"
-      end,
-      disable = true,
-   },
 
    -- IndentLine
    ["lukas-reineke/indent-blankline.nvim"] = {
@@ -138,16 +128,44 @@ local plugins = {
       end,
    },
    -- Better surround
-   ["tpope/vim-surround"] = { event = "InsertEnter" },
+   ["tpope/vim-surround"] = {
+      opt = true,
+      setup = function()
+         utils_g.packer_lazy_load "vim-surround"
+      end,
+   },
    -- Motions
    -- better % match
-   ["andymass/vim-matchup"] = { event = "CursorMoved" },
+   ["andymass/vim-matchup"] = {
+      opt = true,
+      setup = function()
+         utils_g.packer_lazy_load "vim-matchup"
+      end,
+   },
    -- additional text objects
-   ["wellle/targets.vim"] = { event = "CursorMoved" },
-   ["unblevable/quick-scope"] = { event = "CursorMoved", disable = true },
+   ["wellle/targets.vim"] = {
+      opt = true,
+      setup = function()
+         utils_g.packer_lazy_load "targets.vim"
+      end,
+   },
+   ["unblevable/quick-scope"] = {
+      opt = true,
+      setup = function()
+         utils_g.packer_lazy_load "quick-scope"
+      end,
+      disable = true,
+   },
    ["chaoren/vim-wordmotion"] = { opt = true, fn = { "<Plug>WordMotion_w" } },
    -- Buffer
    ["kazhala/close-buffers.nvim"] = { cmd = { "BDelete", "BWipeout" } },
+   ["kevinhwang91/nvim-hlslens"] = { event = "BufReadPre", disable = false },
+   ["nvim-pack/nvim-spectre"] = {
+      keys = { "<leader>s" },
+      config = function()
+         require "plugins.configs.spectre"
+      end,
+   },
 
    -- IDE
    ["antoinemadec/FixCursorHold.nvim"] = {
@@ -252,7 +270,6 @@ local plugins = {
          require "plugins.configs.nvimtree"
       end,
    },
-
    -- Buffer line
    ["akinsho/nvim-bufferline.lua"] = {
       event = "BufReadPre",
@@ -487,42 +504,24 @@ local plugins = {
       end,
    },
 
-   ["kevinhwang91/nvim-hlslens"] = { event = "BufReadPre", disable = false },
-   ["nvim-pack/nvim-spectre"] = { module = "spectre", keys = { "<leader>s" } },
-
-   -- Performance
-   ["dstein64/vim-startuptime"] = { cmd = "StartupTime" },
-   ["nathom/filetype.nvim"] = {},
-
-   -- Session
-   ["rmagatti/auto-session"] = {
-      opt = true,
-      cmd = { "SaveSession", "RestoreSession" },
-      requires = { "rmagatti/session-lens" },
-      wants = { "telescope.nvim", "session-lens" },
-      config = function()
-         require "plugins.configs.autosession"
-      end,
-      disable = false,
-   },
-   ["jedrzejboczar/possession.nvim"] = {
-      config = function()
-         require "plugins.configs.possession"
-      end,
-      cmd = { "PossessionSave", "PosessionLoad", "PosessionShow", "PossessionList" },
-      disable = true,
-   },
-   ["tpope/vim-obsession"] = {
-      cmd = { "Obsess" },
-      config = function()
-         require "plugins.configs.obsession"
-      end,
-      disable = true,
-   },
-
    ["hotoo/pangu.vim"] = {
       opt = true,
       ft = { "markdown" },
+   },
+
+   -- consider remove those unnecessary plugins
+   ["pwntester/octo.nvim"] = {
+      cmd = "Octo",
+      wants = { "telescope.nvim", "plenary.nvim", "nvim-web-devicons" },
+      requires = {
+         "nvim-lua/plenary.nvim",
+         "nvim-telescope/telescope.nvim",
+         "kyazdani42/nvim-web-devicons",
+      },
+      config = function()
+         require "octo"
+      end,
+      disable = true,
    },
 }
 
