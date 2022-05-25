@@ -32,6 +32,7 @@ if asksure; then
 	echo "apply..."
 	rm -rf "${HOME}/.local/share/nvim"
 	rm -rf "${default_xdg_config_path}"
+        rm -rf "${HOME}/.cache/nvim"
 
 	ensureTargetDir "${default_xdg_config_path}"
 
