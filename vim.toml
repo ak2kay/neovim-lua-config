@@ -5,6 +5,9 @@ name = "vim"
 [vim]
 any = true
 
+[utils_g]
+any = true
+
 [[describe.args]]
 type = "string"
 [[describe.args]]
