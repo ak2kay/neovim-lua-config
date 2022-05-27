@@ -72,7 +72,6 @@ local plugins = {
    },
    -- Notification
    ["rcarriga/nvim-notify"] = {
-      event = "VimEnter",
       config = function()
          vim.notify = require "notify"
       end,
@@ -184,7 +183,6 @@ local plugins = {
 
    -- Status line
    ["nvim-lualine/lualine.nvim"] = {
-      event = "VimEnter",
       after = "nvim-treesitter",
       config = function()
          require "plugins.configs.lualine"
@@ -345,7 +343,6 @@ local plugins = {
    },
    ["neovim/nvim-lspconfig"] = {
       opt = true,
-      -- event = "VimEnter",
       event = "BufRead",
       wants = {
          "nvim-lsp-installer",
