@@ -105,6 +105,6 @@ vim.schedule(function()
 end)
 
 -- remove clipboard provider check to speed up nvim startup
--- g.loaded_clipboard_provider = 1
+g.loaded_clipboard_provider = 1
 
 g.mapleader = " "
