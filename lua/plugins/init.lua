@@ -194,7 +194,7 @@ local plugins = {
       module = "nvim-gps",
       wants = "nvim-treesitter",
       config = function()
-         require "nvim-gps"
+         require("nvim-gps").setup()
       end,
    },
    ["b0o/incline.nvim"] = {
