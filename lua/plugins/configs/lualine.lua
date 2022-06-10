@@ -58,7 +58,7 @@ local function lsp_client(msg)
    end
    table.sort(client_names)
 
-   return "[" .. table.concat(client_names, ", ") .. "]"
+   return "[" .. table.concat(client_names, ",") .. "]"
 end
 
 local gps = require "nvim-gps"
