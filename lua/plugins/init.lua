@@ -467,7 +467,7 @@ local plugins = {
       config = function()
          require "plugins.configs.copilot"
       end,
-      disable = false,
+      disable = true,
    },
 
    -- Legendary
