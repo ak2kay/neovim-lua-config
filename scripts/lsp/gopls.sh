@@ -43,7 +43,7 @@ downloadGolang() {
 		exit 1
 	fi
 	ensureTargetDir ${HOME}/.local
-	curl ${download_link} -o go.tar.gz
+	curl -L ${download_link} -o go.tar.gz
 	tar -xvzf ./go.tar.gz -C ${HOME}/.local
 }
 
