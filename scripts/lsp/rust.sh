@@ -2,20 +2,27 @@
 set -o errexit
 set -o nounset
 set -o pipefail
-set -x
+
+script=$(readlink -f "$0")
+base_dir=$(dirname "$script")
+
+. ${base_dir}/utils.sh
 
 if ! command -v rustup &>/dev/null; then
-	curl https://sh.rustup.rs -sSf | sh
+	silencer "curl https://sh.rustup.rs -sSf | sh"
 fi
 
 source $HOME/.cargo/env
 
-rustup component add rust-src
+echo "add rust-src"
+silencer "rustup component add rust-src"
 
 if ! command -v stylua &>/dev/null; then
-	cargo install stylua
+	echo "install stylua"
+	silencer "cargo install stylua"
 fi
 
 if ! command -v selene &>/dev/null; then
-	cargo install selene
+	echo "install selene"
+	silencer "cargo install selene"
 fi

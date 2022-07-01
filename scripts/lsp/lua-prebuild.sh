@@ -2,7 +2,11 @@
 set -o errexit
 set -o nounset
 set -o pipefail
-set -x
+
+script=$(readlink -f "$0")
+base_dir=$(dirname "$script")
+
+. ${base_dir}/utils.sh
 
 base_dir=${HOME}/github/binarys
 lua_dir=${base_dir}/lua-language-server
@@ -45,20 +49,17 @@ download() {
 		echo "no match download link"
 		exit 1
 	fi
-	wget ${download_link} -O ${temp_path}
-}
-
-ensureTargetDir() {
-	dir=${1}
-	if [[ ! -d "${dir}" ]]; then
-		mkdir -p ${dir}
-	fi
+	echo "download lua-language-server: ${download_link}"
+	silencer "wget ${download_link} -O ${temp_path}"
+	echo "lua-language-server: ${download_link} downloaded"
 }
 
 ensureTargetDir "${base_dir}"
 ensureTargetDir "${target_dir}"
 ensureTargetDir "${lua_dir}"
 download
-tar -xvzf ${temp_path} -C ${lua_dir}
+echo "extracting"
+silencer "tar -xvzf ${temp_path} -C ${lua_dir}"
+echo "extracted"
 ln -s ${lua_bin_path} ${target_dir}
 rm --force --recursive ${temp_path}

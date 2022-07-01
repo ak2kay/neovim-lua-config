@@ -3,7 +3,11 @@
 set -o errexit
 set -o nounset
 set -o pipefail
-set -x
+
+script=$(readlink -f "$0")
+base_dir=$(dirname "$script")
+
+. ${base_dir}/utils.sh
 
 base_dir="${HOME}/github"
 if [ -d "${base_dir}" ]; then
@@ -22,18 +26,24 @@ dir="${base_dir}/lua-language-server"
 if [ -d "${dir}" ]; then
 	echo "cloned"
 else
-	git clone https://github.com/sumneko/lua-language-server ${dir}
+	echo "cloning lua-language-server"
+	silencer "git clone https://github.com/sumneko/lua-language-server ${dir}"
+	echo "lua-language-server cloned"
 fi
 
 cd ${dir}
-git submodule update --init --recursive
-git pull
+echo "comping"
+silencer "git submodule update --init --recursive"
+silencer "git pull"
 cd 3rd/luamake
-./compile/install.sh
+silencer "./compile/install.sh"
 cd ../..
-./3rd/luamake/luamake rebuild
+silencer "./3rd/luamake/luamake rebuild"
+echo "compiled"
 target_file="${HOME}/.local/bin/lua-language-server"
 if [ -L "${target_file}" ]; then
 	rm --force --recursive ${target_file}
 fi
+echo "installing"
 ln -s ${dir}/bin/lua-language-server ${HOME}/.local/bin
+echo "installed"

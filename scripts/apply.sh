@@ -4,35 +4,18 @@
 set -o errexit
 set -o pipefail
 
+script=$(readlink -f "$0")
+base_dir=$(dirname "$script")
+
+. ${base_dir}/lsp/utils.sh
+
 default_xdg_config_path="${HOME}/.config/nvim"
 
-asksure() {
-	echo -n "this script will delete your current neovim config in ${XDG_CONFIG_HOME}(${default_xdg_config_path} if emtpy) and ${XDG_DATA_HOME}(${default_xdg_config_path} if empty). Are you sure (Y/N)? "
-	while read -r -n 1 -s answer; do
-		if [[ $answer = [YyNn] ]]; then
-			[[ $answer = [Yy] ]] && retval=0
-			[[ $answer = [Nn] ]] && retval=1
-			break
-		fi
-	done
-
-	echo # just a final linefeed, optics...
-
-	return $retval
-}
-
-ensureTargetDir() {
-	dir=${1}
-	if [[ ! -d "${dir}" ]]; then
-		mkdir -p "${dir}"
-	fi
-}
-### using it
 if asksure; then
 	echo "apply..."
 	rm -rf "${HOME}/.local/share/nvim"
 	rm -rf "${default_xdg_config_path}"
-        rm -rf "${HOME}/.cache/nvim"
+	rm -rf "${HOME}/.cache/nvim"
 
 	ensureTargetDir "${default_xdg_config_path}"
 
@@ -47,13 +30,15 @@ if asksure; then
 		esac
 		echo "${machine}"
 
+		echo "installing stow"
 		if [[ ${machine} = "Linux" ]]; then
-			sudo apt install stow
+			silencer "sudo apt install stow"
 		elif [[ ${machine} = "Mac" ]]; then
-			brew install stow
+			silencer "brew install stow"
 		else
 			echo "Please install stow first"
 		fi
+		echo "stow installed"
 	fi
 
 	stow --restow --target="${default_xdg_config_path}" .

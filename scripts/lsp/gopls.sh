@@ -2,7 +2,11 @@
 set -o errexit
 set -o nounset
 set -o pipefail
-set -x
+
+script=$(readlink -f "$0")
+base_dir=$(dirname "$script")
+
+. ${base_dir}/utils.sh
 
 PATH=${HOME}/.local/go/bin:${PATH}
 
@@ -43,15 +47,12 @@ downloadGolang() {
 		exit 1
 	fi
 	ensureTargetDir ${HOME}/.local
-	curl -L ${download_link} -o go.tar.gz
-	tar -xvzf ./go.tar.gz -C ${HOME}/.local
-}
-
-ensureTargetDir() {
-	dir=${1}
-	if [[ ! -d "${dir}" ]]; then
-		mkdir -p ${dir}
-	fi
+	echo "downloading golang: ${download_link}"
+	silencer "curl -L ${download_link} -o go.tar.gz"
+	echo "golang: ${download_link} downloaded"
+	echo "untracting golang"
+	silencer "tar -xvzf ./go.tar.gz -C ${HOME}/.local"
+	echo "golang untracted"
 }
 
 if ! command -v go &>/dev/null; then
@@ -59,10 +60,16 @@ if ! command -v go &>/dev/null; then
 fi
 
 cd /tmp
-go install golang.org/x/tools/gopls@latest
+echo "install gopls"
+silencer "go install golang.org/x/tools/gopls@latest"
 # shell formatter
-go install mvdan.cc/sh/v3/cmd/shfmt@latest
+echo "install shfmt"
+silencer "go install mvdan.cc/sh/v3/cmd/shfmt@latest"
 
-go install mvdan.cc/gofumpt@latest
-go install golang.org/x/tools/cmd/goimports@latest
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
+echo "install gofumpt"
+silencer "go install mvdan.cc/gofumpt@latest"
+echo "install goimports"
+silencer "go install golang.org/x/tools/cmd/goimports@latest"
+echo "install golangci-lint"
+silencer "go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2"
+echo "all deps installed"
