@@ -44,7 +44,6 @@ if command -v nvim &>/dev/null; then
 	fi
 fi
 
-echo -ne "\r${BAR:0:20}" # print $i chars of $BAR from 0 position
 echo "building neovim"
 silencer "make CMAKE_BUILD_TYPE=Release"
 echo "neovim built"
