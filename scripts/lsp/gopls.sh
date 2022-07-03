@@ -53,6 +53,7 @@ downloadGolang() {
 	echo "untracting golang"
 	silencer "tar -xvzf ./go.tar.gz -C ${HOME}/.local"
 	echo "golang untracted"
+	rm -rf ./go.tar.gz
 }
 
 if ! command -v go &>/dev/null; then

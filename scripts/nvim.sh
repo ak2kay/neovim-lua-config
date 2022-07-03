@@ -15,8 +15,8 @@ if [[ ${distro} != "Ubuntu" ]]; then
 	exit 0
 fi
 
-repo_path="${HOME}"/github
-ensureTargetDir repo_path
+repo_path=${HOME}/github
+ensureTargetDir ${repo_path}
 
 echo "installing neovim deps"
 silencer "sudo apt update"
