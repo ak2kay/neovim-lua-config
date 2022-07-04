@@ -11,6 +11,7 @@ base_dir=$(dirname "$script")
 
 default_xdg_config_path="${HOME}/.config/nvim"
 
+echo -n "this script will delete your current neovim config in ${XDG_CONFIG_HOME}(${default_xdg_config_path} if emtpy) and ${XDG_DATA_HOME}(${default_xdg_config_path} if empty). Are you sure (Y/N)? "
 if asksure; then
 	echo "apply..."
 	rm -rf "${HOME}/.local/share/nvim"
