@@ -1,15 +1,13 @@
 #!/bin/bash
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-nvm install --lts
-nvm use --lts
-
 script=$(readlink -f "$0")
 base_dir=$(dirname "$script")
 
+. ${base_dir}/lsp/utils.sh
+
+dest=/tmp/nodesource_setup.sh
+curl -sL https://deb.nodesource.com/setup_16.x -o ${dest}
+echo "add node source"
+silencer "sudo bash ${dest}"
+sudo apt install nodejs
 bash ${base_dir}/lsp/npm.sh

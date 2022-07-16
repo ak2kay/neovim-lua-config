@@ -14,11 +14,11 @@ npm_package_name=(pyright bash-language-server typescript-language-server typesc
 for i in "${!command_name[@]}"; do
 	if ! command -v "${command_name[$i]}" &>/dev/null; then
 		echo "installing ${npm_package_name[$i]}"
-		silencer "npm install -g ${npm_package_name[$i]}"
+		silencer "sudo npm install --location=global ${npm_package_name[$i]}"
 		echo "installed ${npm_package_name[$i]}"
 	else
 		echo "updating ${npm_package_name[$i]}"
-		silencer "npm update -g ${npm_package_name[$i]}"
+		silencer "sudo npm update --location=global ${npm_package_name[$i]}"
 		echo "updated ${npm_package_name[$i]}"
 	fi
 done

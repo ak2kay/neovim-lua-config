@@ -9,7 +9,8 @@ base_dir=$(dirname "$script")
 . ${base_dir}/utils.sh
 
 if ! command -v rustup &>/dev/null; then
-	silencer "curl https://sh.rustup.rs -sSf | sh"
+	echo "install rust"
+	curl https://sh.rustup.rs -sSf | sh -s -- -y
 fi
 
 source $HOME/.cargo/env
