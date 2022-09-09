@@ -14,3 +14,10 @@ autocmd("BufUnload", {
       vim.opt.laststatus = 3
    end,
 })
+
+autocmd({ "BufNewFile", "BufRead" }, {
+   pattern = "*.star",
+   callback = function()
+      vim.opt.filetype = "python"
+   end,
+})
