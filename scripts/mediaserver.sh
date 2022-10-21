@@ -7,7 +7,7 @@ fi
 
 wget http://www.live555.com/liveMedia/public/live555-latest.tar.gz
 tar xvf live555-latest.tar.gz
-cd live
+cd live || exit
 ./genMakefiles linux
 make
 sudo make install

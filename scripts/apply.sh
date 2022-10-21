@@ -7,7 +7,7 @@ set -o pipefail
 script=$(readlink -f "$0")
 base_dir=$(dirname "$script")
 
-. ${base_dir}/lsp/utils.sh
+. "${base_dir}"/lsp/utils.sh
 
 default_xdg_config_path="${HOME}/.config/nvim"
 
@@ -33,9 +33,9 @@ if asksure; then
 
 		echo "installing stow"
 		if [[ ${machine} = "Linux" ]]; then
-			silencer "sudo apt install stow"
+			sudo apt install stow
 		elif [[ ${machine} = "Mac" ]]; then
-			silencer "brew install stow"
+			brew install stow
 		else
 			echo "Please install stow first"
 		fi

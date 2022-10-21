@@ -17,7 +17,7 @@ asksure() {
 ensureTargetDir() {
 	dir=${1}
 	if [[ ! -d "${dir}" ]]; then
-		mkdir -p ${dir}
+		mkdir -p "${dir}"
 	fi
 }
 

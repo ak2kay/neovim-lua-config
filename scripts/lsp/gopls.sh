@@ -6,7 +6,7 @@ set -o pipefail
 script=$(readlink -f "$0")
 base_dir=$(dirname "$script")
 
-. ${base_dir}/utils.sh
+. "${base_dir}"/utils.sh
 
 PATH=${HOME}/.local/go/bin:${PATH}
 
@@ -19,7 +19,7 @@ downloadGolang() {
 	MINGW*) machine=MinGw ;;
 	*) machine="UNKNOWN:${machine_out}" ;;
 	esac
-	echo ${machine}
+	echo "${machine}"
 	arch_out="$(uname -i)"
 	case "${arch_out}" in
 	x86_64*) arch=x86_64 ;;
@@ -46,12 +46,12 @@ downloadGolang() {
 		echo "no match download link"
 		exit 1
 	fi
-	ensureTargetDir ${HOME}/.local
+	ensureTargetDir "${HOME}"/.local
 	echo "downloading golang: ${download_link}"
-	silencer "curl -L ${download_link} -o go.tar.gz"
+	curl -L ${download_link} -o go.tar.gz
 	echo "golang: ${download_link} downloaded"
 	echo "untracting golang"
-	silencer "tar -xvzf ./go.tar.gz -C ${HOME}/.local"
+	tar -xvzf ./go.tar.gz -C ${HOME}/.local
 	echo "golang untracted"
 	rm -rf ./go.tar.gz
 }
@@ -62,15 +62,15 @@ fi
 
 cd /tmp
 echo "install gopls"
-silencer "go install golang.org/x/tools/gopls@latest"
+go install golang.org/x/tools/gopls@latest
 # shell formatter
 echo "install shfmt"
-silencer "go install mvdan.cc/sh/v3/cmd/shfmt@latest"
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
 echo "install gofumpt"
-silencer "go install mvdan.cc/gofumpt@latest"
+go install mvdan.cc/gofumpt@latest
 echo "install goimports"
-silencer "go install golang.org/x/tools/cmd/goimports@latest"
+go install golang.org/x/tools/cmd/goimports@latest
 echo "install golangci-lint"
-silencer "go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2"
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
 echo "all deps installed"

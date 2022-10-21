@@ -8,31 +8,29 @@ fi
 script=$(readlink -f "$0")
 base_dir=$(dirname "$script")
 
-. ${base_dir}/lsp/utils.sh
-
-bash ${base_dir}/protobuf.sh
+bash "${base_dir}"/protobuf.sh
 
 echo "installing deps"
-silencer "sudo apt install -y libssl-dev zlib1g-dev libncurses5-dev"
+sudo apt install -y libssl-dev zlib1g-dev libncurses5-dev
 
 repo_path=${HOME}/github
-ensureTargetDir ${repo_path}
+ensureTargetDir "${repo_path}"
 
-cd ${repo_path}
+cd "${repo_path}" || exit
 if [[ ! -d "mosh" ]]; then
 	echo "cloning mosh"
-	silencer "git clone https://github.com/mobile-shell/mosh"
+	git clone https://github.com/mobile-shell/mosh
 	echo "mosh cloned"
 fi
-cd mosh
+cd mosh || exit
 echo "updating mosh repo"
-silencer "git pull"
+git pull
 echo "mosh repo updated"
 echo "gen configure"
-silencer "./autogen.sh"
+./autogen.sh
 echo "configuring"
-silencer "./configure"
+./configure
 echo "building"
-silencer "make"
+make
 echo "installing"
-silencer "sudo make install"
+sudo make install
