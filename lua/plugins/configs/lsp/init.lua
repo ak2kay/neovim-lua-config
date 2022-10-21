@@ -38,18 +38,6 @@ local servers = {
                -- Get the language server to recognize the `vim` global
                globals = { "vim", "utils_g" },
             },
-            workspace = {
-               library = {
-                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                  [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-               },
-               maxPreload = 100000,
-               preloadFileSize = 10000,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-               enable = false,
-            },
          },
       },
    },
@@ -86,7 +74,7 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
 
 local default_ops = {
    on_attach = on_attach,
@@ -102,10 +90,6 @@ require("plugins.configs.lsp.handlers").setup()
 function M.setup()
    for server_name, custom_opts in pairs(servers) do
       local opts = vim.tbl_deep_extend("force", default_ops, custom_opts)
-
-      if server_name == "sumneko_lua" then
-         opts = require("lua-dev").setup { lspconfig = opts }
-      end
 
       if server_name == "rust_analyzer" then
          require("rust-tools").setup {

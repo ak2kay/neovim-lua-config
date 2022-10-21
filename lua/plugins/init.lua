@@ -158,7 +158,13 @@ local plugins = {
    ["chaoren/vim-wordmotion"] = { opt = true, fn = { "<Plug>WordMotion_w" } },
    -- Buffer
    ["kazhala/close-buffers.nvim"] = { cmd = { "BDelete", "BWipeout" } },
-   ["kevinhwang91/nvim-hlslens"] = { event = "BufReadPre", disable = false },
+   ["kevinhwang91/nvim-hlslens"] = {
+      event = "BufReadPre",
+      disable = false,
+      config = function()
+         require("hlslens").setup()
+      end,
+   },
    ["nvim-pack/nvim-spectre"] = {
       keys = { "<leader>s" },
       config = function()
@@ -347,7 +353,7 @@ local plugins = {
       wants = {
          "nvim-lsp-installer",
          "cmp-nvim-lsp",
-         "lua-dev.nvim",
+         "neodev.nvim",
          "vim-illuminate",
          "null-ls.nvim",
          "typescript.nvim",
@@ -365,7 +371,12 @@ local plugins = {
       end,
       requires = {
          "williamboman/nvim-lsp-installer",
-         "folke/lua-dev.nvim",
+         {
+            "folke/neodev.nvim",
+            config = function()
+               require("neodev").setup {}
+            end,
+         },
          "RRethy/vim-illuminate",
          "jose-elias-alvarez/null-ls.nvim",
          {

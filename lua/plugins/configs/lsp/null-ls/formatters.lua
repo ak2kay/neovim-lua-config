@@ -18,7 +18,7 @@ end
 
 function M.format()
    if M.autoformat then
-      vim.lsp.buf.formatting {
+      vim.lsp.buf.format {
          async = true,
          -- NOTE: some lsp don't support this syntax
          -- filter = function(clients)
@@ -41,9 +41,9 @@ function M.setup(client, buf)
    end
 
    -- FIXME: this could make some non null-ls lsp which don't has format cap enabled auto-format by accident
-   client.resolved_capabilities.document_formatting = enable
-   client.resolved_capabilities.document_range_formatting = enable
-   if client.resolved_capabilities.document_formatting then
+   client.server_capabilities.document_formatting = enable
+   client.server_capabilities.document_range_formatting = enable
+   if client.server_capabilities.document_formatting then
       vim.cmd [[
       augroup LspFormat
         autocmd! * <buffer>
