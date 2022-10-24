@@ -19,7 +19,7 @@ end
 function M.format()
    if M.autoformat then
       vim.lsp.buf.format {
-         async = true,
+         async = false,
          -- NOTE: some lsp don't support this syntax
          -- filter = function(clients)
          --   return vim.tbl_filter(function(client)

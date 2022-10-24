@@ -38,6 +38,11 @@ local servers = {
                -- Get the language server to recognize the `vim` global
                globals = { "vim", "utils_g" },
             },
+            format = {
+               -- default formatting ability provided by sumneko_lua will make annoying save issues.
+               -- aka, :w won't work, even if you changed nothing.
+               enable = false,
+            },
          },
       },
    },
