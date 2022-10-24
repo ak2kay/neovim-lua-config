@@ -166,7 +166,7 @@ local plugins = {
       end,
    },
    ["nvim-pack/nvim-spectre"] = {
-      keys = { "<leader>s" },
+      keys = { [[<leader>sw]], [[<leader>sp]] },
       config = function()
          require "plugins.configs.spectre"
       end,
@@ -436,8 +436,11 @@ local plugins = {
    ["ray-x/go.nvim"] = {
       ft = { "go" },
       config = function()
-         require "go"
+         require("go").setup()
       end,
+      requires = {
+         "ray-x/guihua.lua",
+      },
    },
 
    -- Terminal
