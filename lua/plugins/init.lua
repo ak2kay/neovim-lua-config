@@ -97,6 +97,7 @@ local plugins = {
       requires = { "tpope/vim-rhubarb" },
    },
    ["ruifm/gitlinker.nvim"] = {
+      keys = { [[<leader>gy]] },
       module = "gitlinker",
       after = "vim-oscyank",
       requires = { "ojroques/vim-oscyank", "nvim-lua/plenary.nvim" },

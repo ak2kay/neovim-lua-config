@@ -5,7 +5,6 @@ if not present then
 end
 
 linker.setup {
-   mappings = nil,
    opts = {
       action_callback = function(url)
          -- yank to unnamed register
