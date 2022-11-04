@@ -56,6 +56,7 @@ local plugins = {
    ["ojroques/vim-oscyank"] = {
       cmd = "OSCYank",
       keys = { [[<leader>c]] },
+      fn = { "OSCYankString" },
       config = function()
          require "plugins.configs.oscyank"
       end,
@@ -96,10 +97,11 @@ local plugins = {
       requires = { "tpope/vim-rhubarb" },
    },
    ["ruifm/gitlinker.nvim"] = {
-      requires = "nvim-lua/plenary.nvim",
       module = "gitlinker",
+      after = "vim-oscyank",
+      requires = { "ojroques/vim-oscyank", "nvim-lua/plenary.nvim" },
       config = function()
-         require("gitlinker").setup { mappings = nil }
+         require "plugins.configs.gitlinker"
       end,
    },
 
