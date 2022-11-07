@@ -46,7 +46,8 @@ local servers = {
          },
       },
    },
-   tsserver = { disable_formatting = true },
+   -- tsserver is too slow, disable it for now.
+   --[[ tsserver = { disable_formatting = true }, ]]
    yamlls = {},
 }
 
@@ -100,8 +101,8 @@ function M.setup()
          require("rust-tools").setup {
             server = opts,
          }
-      elseif server_name == "tsserver" then
-         require("typescript").setup { server = opts }
+         --[[ elseif server_name == "tsserver" then ]]
+         --[[    require("typescript").setup { server = opts } ]]
       else
          lspconfig[server_name].setup(opts)
       end
