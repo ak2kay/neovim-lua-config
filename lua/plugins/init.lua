@@ -27,6 +27,12 @@ local plugins = {
       config = function()
          vim.cmd "colorscheme neobones"
       end,
+      disable = true,
+   },
+   ["whatsthatsmell/codesmell_dark.vim"] = {
+      config = function()
+         vim.cmd "colorscheme codesmell_dark"
+      end,
       disable = false,
    },
 
