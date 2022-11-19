@@ -18,22 +18,62 @@ local plugins = {
    -- Colorscheme
    ["sainnhe/everforest"] = {
       config = function()
-         vim.cmd "colorscheme everforest"
+         vim.cmd [[colorscheme everforest]]
       end,
       disable = true,
    },
    ["mcchrish/zenbones.nvim"] = {
       requires = "rktjmp/lush.nvim", -- https://github.com/rktjmp/lush.nvim
       config = function()
-         vim.cmd "colorscheme neobones"
+         vim.o.background = "light"
+         vim.cmd [[colorscheme zenwritten]]
       end,
-      disable = true,
+      disable = false,
    },
    ["whatsthatsmell/codesmell_dark.vim"] = {
       config = function()
-         vim.cmd "colorscheme codesmell_dark"
+         vim.cmd [[colorscheme codesmell_dark]]
       end,
-      disable = false,
+      disable = true,
+   },
+   ["sainnhe/gruvbox-material"] = {
+      config = function()
+         vim.g.gruvbox_material_background = "soft"
+         vim.cmd [[colorscheme gruvbox-material]]
+      end,
+      disable = true,
+   },
+   ["mhartington/oceanic-next"] = {
+      config = function()
+         vim.cmd [[colorscheme OceanicNext]]
+      end,
+      disable = true,
+   },
+   ["relastle/bluewery.vim"] = {
+      config = function()
+         vim.cmd [[colorscheme bluewery]]
+      end,
+      disable = true,
+   },
+   ["sam4llis/nvim-tundra"] = {
+      config = function()
+         vim.opt.background = "dark"
+         vim.cmd "colorscheme tundra"
+      end,
+      disable = true,
+   },
+   ["rebelot/kanagawa.nvim"] = {
+      config = function()
+         vim.cmd [[colorscheme kanagawa]]
+      end,
+      disable = true,
+   },
+   ["rose-pine/neovim"] = {
+      as = "rose-pine",
+      config = function()
+         vim.cmd "colorscheme rose-pine"
+      end,
+      disable = true,
    },
 
    ["norcalli/nvim-colorizer.lua"] = {
