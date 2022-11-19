@@ -514,17 +514,6 @@ local plugins = {
       disable = true,
    },
 
-   -- Legendary
-   ["mrjones2014/legendary.nvim"] = {
-      opt = true,
-      keys = { [[<C-k>]] },
-      wants = { "dressing.nvim" },
-      config = function()
-         require "plugins.configs.legendary"
-      end,
-      requires = { "stevearc/dressing.nvim" },
-   },
-
    -- Harpoon can add marks for frequently used files, and jump to them quickly.
    ["ThePrimeagen/harpoon"] = { -- https://github.com/ThePrimeagen/harpoon
       module = { "harpoon", "harpoon.cmd-ui", "harpoon.mark", "harpoon.ui", "harpoon.term" },
