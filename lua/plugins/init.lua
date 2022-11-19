@@ -16,12 +16,6 @@ local plugins = {
    },
 
    -- Colorscheme
-   ["sainnhe/everforest"] = {
-      config = function()
-         vim.cmd [[colorscheme everforest]]
-      end,
-      disable = true,
-   },
    ["mcchrish/zenbones.nvim"] = {
       requires = "rktjmp/lush.nvim", -- https://github.com/rktjmp/lush.nvim
       config = function()
@@ -40,12 +34,6 @@ local plugins = {
       config = function()
          vim.g.gruvbox_material_background = "soft"
          vim.cmd [[colorscheme gruvbox-material]]
-      end,
-      disable = true,
-   },
-   ["mhartington/oceanic-next"] = {
-      config = function()
-         vim.cmd [[colorscheme OceanicNext]]
       end,
       disable = true,
    },
@@ -84,13 +72,6 @@ local plugins = {
    },
 
    -- Enhance
-   ["szw/vim-maximizer"] = {
-      cmd = "MaximizerToggle",
-      keys = { [[<leader>z]] },
-      config = function()
-         require "plugins.configs.maximizer"
-      end,
-   },
    ["dyng/ctrlsf.vim"] = {
       cmd = { "CtrlSF" },
       keys = { [[<leader>rw]] },
@@ -544,8 +525,8 @@ local plugins = {
       requires = { "stevearc/dressing.nvim" },
    },
 
-   -- Harpoon
-   ["ThePrimeagen/harpoon"] = {
+   -- Harpoon can add marks for frequently used files, and jump to them quickly.
+   ["ThePrimeagen/harpoon"] = { -- https://github.com/ThePrimeagen/harpoon
       module = { "harpoon", "harpoon.cmd-ui", "harpoon.mark", "harpoon.ui", "harpoon.term" },
       wants = { "telescope.nvim" },
       config = function()
@@ -553,8 +534,8 @@ local plugins = {
       end,
    },
 
-   -- Refactoring
-   ["ThePrimeagen/refactoring.nvim"] = {
+   -- Refactoring can extract funciton from selected codes.
+   ["ThePrimeagen/refactoring.nvim"] = { -- https://github.com/ThePrimeagen/refactoring.nvim
       module = { "refactoring", "telescope" },
       keys = { [[<leader>r]] },
       wants = { "telescope.nvim" },
@@ -566,21 +547,6 @@ local plugins = {
    ["hotoo/pangu.vim"] = {
       opt = true,
       ft = { "markdown" },
-   },
-
-   -- consider remove those unnecessary plugins
-   ["pwntester/octo.nvim"] = {
-      cmd = "Octo",
-      wants = { "telescope.nvim", "plenary.nvim", "nvim-web-devicons" },
-      requires = {
-         "nvim-lua/plenary.nvim",
-         "nvim-telescope/telescope.nvim",
-         "kyazdani42/nvim-web-devicons",
-      },
-      config = function()
-         require "octo"
-      end,
-      disable = true,
    },
 }
 
