@@ -72,5 +72,6 @@ go install mvdan.cc/gofumpt@latest
 echo "install goimports"
 go install golang.org/x/tools/cmd/goimports@latest
 echo "install golangci-lint"
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
+go install github.com/nametake/golangci-lint-langserver@latest
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 echo "all deps installed"

@@ -16,6 +16,7 @@ end
 
 local servers = {
    gopls = {},
+   golangci_lint_ls = {},
    jsonls = {
       settings = get_json_schemas(),
    },
