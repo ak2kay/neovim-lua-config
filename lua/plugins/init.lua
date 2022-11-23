@@ -22,7 +22,7 @@ local plugins = {
          vim.o.background = "light"
          vim.cmd [[colorscheme zenwritten]]
       end,
-      disable = false,
+      disable = true,
    },
    ["whatsthatsmell/codesmell_dark.vim"] = {
       config = function()
@@ -62,6 +62,12 @@ local plugins = {
          vim.cmd "colorscheme rose-pine"
       end,
       disable = true,
+   },
+   ["shaunsingh/nord.nvim"] = {
+      config = function()
+         vim.cmd [[colorscheme nord]]
+      end,
+      disable = false,
    },
 
    ["norcalli/nvim-colorizer.lua"] = {
