@@ -44,7 +44,7 @@ end
 cmp.setup {
    completion = { --[[completeopt = "menu,menuone,noinsert",]]
       keyword_length = 2,
-      autocomplete = false,
+      -- autocomplete = true,
    },
    experimental = { ghost_text = true },
    snippet = {
