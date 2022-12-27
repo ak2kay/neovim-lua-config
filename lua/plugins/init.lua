@@ -383,6 +383,12 @@ local plugins = {
       event = "InsertEnter",
       disable = false,
    },
+   ["dnlhc/glance.nvim"] = {
+      event = "BufRead",
+      config = function()
+         require "plugins.configs.glance"
+      end,
+   },
    ["neovim/nvim-lspconfig"] = {
       opt = true,
       event = "BufRead",
