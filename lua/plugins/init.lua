@@ -86,12 +86,9 @@ local plugins = {
       end,
    },
    -- yank through ssh
-   ["ojroques/vim-oscyank"] = {
-      cmd = "OSCYank",
-      keys = { [[<leader>c]] },
-      fn = { "OSCYankString" },
+   ["ojroques/nvim-osc52"] = {
       config = function()
-         require "plugins.configs.oscyank"
+         require "plugins.configs.osc"
       end,
    },
    ["ellisonleao/glow.nvim"] = {
