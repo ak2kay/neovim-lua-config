@@ -1,4 +1,4 @@
-local M = { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" }
+local M = { "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu", event = "BufReadPre" }
 
 function M.config()
    local keymap = utils_g.set_keymap

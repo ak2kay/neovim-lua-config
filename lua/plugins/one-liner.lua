@@ -22,10 +22,10 @@ return {
       end,
    },
    { "tpope/vim-surround", event = "VeryLazy" },
-   { "andymass/vim-matchup", event = "VeryLazy" },
+   { "andymass/vim-matchup", event = "BufRead" },
    { "wellle/targets.vim", event = "VeryLazy" },
    { "unblevable/quick-scope", enabled = false },
-   "chaoren/vim-wordmotion",
+   { "chaoren/vim-wordmotion", event = "BufReadPre" },
    { "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } },
    {
       "kevinhwang91/nvim-hlslens",
@@ -42,17 +42,10 @@ return {
       end,
    },
    {
-      "SmiteshP/nvim-gps",
-      dependencies = "nvim-treesitter/nvim-treesitter",
-      config = function()
-         require("nvim-gps").setup()
-      end,
-   },
-   {
       "b0o/incline.nvim",
       event = "BufReadPre",
       config = function()
-         require "incline"
+         require("incline").setup()
       end,
    },
    {
@@ -67,6 +60,7 @@ return {
    },
    {
       "L3MON4D3/LuaSnip",
+      lazy = true,
       dependencies = { "rafamadriz/friendly-snippets" },
       config = function()
          require("luasnip.loaders.from_vscode").lazy_load()
@@ -87,12 +81,14 @@ return {
    },
    {
       "folke/neodev.nvim",
+      lazy = true,
       config = function()
          require("neodev").setup {}
       end,
    },
    {
       "j-hui/fidget.nvim",
+      event = "BufReadPre",
       config = function()
          require("fidget").setup {}
       end,

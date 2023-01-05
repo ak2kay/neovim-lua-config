@@ -2,6 +2,7 @@ local M = {
    "kyazdani42/nvim-tree.lua",
    dependencies = { "kyazdani42/nvim-web-devicons" },
    cmd = { "NvimTreeToggle", "NvimTreeClose" },
+   keys = { [[<leader>e]] },
 }
 
 function M.config()

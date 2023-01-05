@@ -1,6 +1,7 @@
 local M = {
    "windwp/nvim-autopairs",
    dependencies = { "nvim-treesitter/nvim-treesitter" },
+   lazy = true,
 }
 
 function M.config()

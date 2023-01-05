@@ -6,6 +6,7 @@ local M = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       "JoosepAlviste/nvim-ts-context-commentstring",
+      "andymass/vim-matchup",
    },
 }
 

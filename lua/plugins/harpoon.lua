@@ -1,5 +1,6 @@
 local M = {
    "ThePrimeagen/harpoon",
+   lazy = true,
    dependencies = { "nvim-telescope/telescope.nvim" },
 }
 

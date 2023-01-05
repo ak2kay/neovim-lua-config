@@ -1,4 +1,4 @@
-local M = { "rmagatti/goto-preview" }
+local M = { "rmagatti/goto-preview", event = "BufRead" }
 
 function M.config()
    local gp = require "goto-preview"
