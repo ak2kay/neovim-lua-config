@@ -21,11 +21,10 @@ return {
          require("nvim-web-devicons").setup { default = true }
       end,
    },
-   { "tpope/vim-surround", event = "VeryLazy" },
-   { "andymass/vim-matchup", event = "BufRead" },
-   { "wellle/targets.vim", event = "VeryLazy" },
-   { "unblevable/quick-scope", enabled = false },
-   { "chaoren/vim-wordmotion", event = "BufReadPre" },
+   { "tpope/vim-surround", event = "VeryLazy" }, -- Examples: cst": aka change surround to "; ds": aka delete surround "; cs"'; ysiw";
+   { "andymass/vim-matchup", event = "BufRead" }, -- Even better % 👊 navigate and highlight matching words
+   { "wellle/targets.vim", event = "VeryLazy" }, -- Provides additional text objects
+   { "chaoren/vim-wordmotion", event = "BufReadPre" }, -- More useful word motions, like camelcase
    { "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } },
    {
       "kevinhwang91/nvim-hlslens",
@@ -35,14 +34,7 @@ return {
       end,
    },
    {
-      "antoinemadec/FixCursorHold.nvim",
-      event = "BufReadPre",
-      config = function()
-         vim.g.cursorhold_updatetime = 100
-      end,
-   },
-   {
-      "b0o/incline.nvim",
+      "b0o/incline.nvim", -- Floating statuslines for Neovim
       event = "BufReadPre",
       config = function()
          require("incline").setup()
@@ -67,24 +59,9 @@ return {
       end,
    },
    {
-      "windwp/nvim-ts-autotag",
+      "RRethy/nvim-treesitter-endwise", -- Wisely add "end" in Ruby, Vimscript, Lua, etc.
       dependencies = "nvim-treesitter/nvim-treesitter",
       event = "InsertEnter",
-      config = function()
-         require("nvim-ts-autotag").setup { enabled = true }
-      end,
-   }, -- End wise
-   {
-      "RRethy/nvim-treesitter-endwise",
-      dependencies = "nvim-treesitter/nvim-treesitter",
-      event = "InsertEnter",
-   },
-   {
-      "folke/neodev.nvim",
-      lazy = true,
-      config = function()
-         require("neodev").setup {}
-      end,
    },
    {
       "j-hui/fidget.nvim",

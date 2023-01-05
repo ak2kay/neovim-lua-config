@@ -13,6 +13,7 @@ local M = {
       "kosayoda/nvim-lightbulb",
       "b0o/schemastore.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      "folke/neodev.nvim",
    },
 }
 

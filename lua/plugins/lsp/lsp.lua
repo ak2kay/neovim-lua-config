@@ -94,6 +94,8 @@ local function merge_opts(server_name)
 end
 
 local function setup()
+   -- Make sure call neodev setup earlier than lspconfig
+   require("neodev").setup {}
    -- Setup LSP handlers
    require("plugins.lsp.handlers").setup()
 
