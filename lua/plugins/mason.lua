@@ -67,6 +67,7 @@ function M.config()
          "pyright",
          "terraform-ls",
          "yaml-language-server",
+         "gopls",
          -- Formatter
          "black",
          "prettier",
