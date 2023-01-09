@@ -1,4 +1,4 @@
-local M = { "ojroques/nvim-osc52", lazy = true }
+local M = { "ojroques/nvim-osc52", lazy = true, keys = { [[<leader>c]], [[<leader>cc]] } }
 
 function M.config()
    vim.keymap.set("n", "<leader>c", require("osc52").copy_operator, { expr = true })
