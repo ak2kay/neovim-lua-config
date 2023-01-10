@@ -1,7 +1,7 @@
-local M = { "numToStr/Comment.nvim", keys = { "gc", "gcc", "gbc" } }
+local M = { "numToStr/Comment.nvim", keys = { [[gc]], [[gcc]], [[gbc]] } }
 
 function M.config()
-   require("comment").setup {
+   require("Comment").setup {
       pre_hook = function(ctx)
          local U = require "Comment.utils"
 
@@ -12,8 +12,7 @@ function M.config()
             location = require("ts_context_commentstring.utils").get_visual_start_location()
          end
 
-         return
-            require("ts_context_commentstring.internal").calculate_commentstring {
+         return require("ts_context_commentstring.internal").calculate_commentstring {
             key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
             location = location,
          }
