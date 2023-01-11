@@ -87,4 +87,5 @@ return {
       dependencies = { "ray-x/guihua.lua" },
    },
    { "hotoo/pangu.vim", ft = { "markdown" } },
+   { "tpope/vim-fugitive", event = "BufRead" },
 }
