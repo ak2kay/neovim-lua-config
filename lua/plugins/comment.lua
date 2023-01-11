@@ -1,4 +1,4 @@
-local M = { "numToStr/Comment.nvim", keys = { [[gc]], [[gcc]], [[gbc]] } }
+local M = { "numToStr/Comment.nvim", event = "BufRead" }
 
 function M.config()
    require("Comment").setup {
