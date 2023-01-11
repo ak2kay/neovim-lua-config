@@ -1,7 +1,6 @@
 local M = {
    "nvim-telescope/telescope.nvim",
-   cmd = { "Telescope" },
-   keys = { [[<c-p>]] },
+   event = "BufWinEnter",
    dependencies = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
