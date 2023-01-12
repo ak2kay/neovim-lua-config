@@ -30,11 +30,9 @@ local sources = {
    b.formatting.goimports, -- Updates your Go import lines, adding missing ones and removing unreferenced ones.
 
    -- diagnostics
-   with_diagnostics_code(b.diagnostics.write_good), -- Naive linter for English prose for developers who can't write good and wanna learn to do other stuff good too. Note: markdown only.
    with_diagnostics_code(b.diagnostics.eslint_d), -- Injects actions to fix ESLint issues or ignore broken rules. Like ESLint, but faster.
    with_diagnostics_code(b.diagnostics.flake8),
    with_diagnostics_code(b.diagnostics.selene), -- Command line tool designed to help write correct and idiomatic Lua code.
-   --[[ with_diagnostics_code(b.diagnostics.golangci_lint), ]]
    with_diagnostics_code(b.diagnostics.shellcheck), -- A shell script static analysis tool.
 
    -- code actions
