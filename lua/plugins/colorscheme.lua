@@ -36,16 +36,14 @@ return {
          vim.opt.background = "dark"
          vim.cmd "colorscheme tundra"
       end,
-      priority = 1000, -- make sure colorscheme loads first
-      enabled = true,
-      lazy = false,
+      enabled = false,
    },
    {
       "rebelot/kanagawa.nvim",
       config = function()
          vim.cmd [[colorscheme kanagawa]]
       end,
-      enabled = false,
+      enabled = true,
    },
    {
       "rose-pine/neovim",
