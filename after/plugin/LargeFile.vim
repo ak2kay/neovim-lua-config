@@ -36,6 +36,23 @@ augroup LargeFile
  au BufReadPost	* call <SID>LargeFilePost()
 augroup END
 
+function DisableSyntaxTreesitter()
+    echo("Big file, disabling syntax, treesitter and folding")
+    if exists(':TSBufDisable')
+        exec 'TSBufDisable autotag'
+        exec 'TSBufDisable highlight'
+        " etc...
+    endif
+
+    set foldmethod=manual
+    syntax clear
+    syntax off
+    filetype off
+    set noundofile
+    set noswapfile
+    set noloadplugins
+endfunction
+
 " ---------------------------------------------------------------------
 " s:LargeFile: {{{2
 fun! s:LargeFile(force,fname)
@@ -43,6 +60,7 @@ fun! s:LargeFile(force,fname)
   let fsz= getfsize(a:fname)
 "  call Decho("fsz=".fsz)
   if a:force || fsz >= g:LargeFile*1024*1024 || fsz <= -2
+   call DisableSyntaxTreesitter()
    sil! call s:ParenMatchOff()
    syn clear
    " buffer variables are used for buffer,window-local options
