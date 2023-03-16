@@ -11,7 +11,7 @@ base_dir=$(dirname "$script")
 
 if command -v protoc &>/dev/null; then
 	protoc_current_version=$(protoc --version | awk '{print $2}')
-	if [ "${protoc_current_version}" = 3.21.1 ]; then
+	if [[ "${protoc_current_version}" == "3.21.1" ]]; then
 		echo "You have expected version of protobuf, reinstall? [Y/N]"
 		if ! asksure; then
 			exit 0
@@ -32,11 +32,11 @@ cd "protobuf-21.1"
 echo "gen configure"
 ./autogen.sh
 echo "configuring"
-./configure
+./configure --prefix=${HOME}/.local
 echo "building"
 make
 echo "installing"
-sudo make install
+make install
 echo "refresh ldconfig"
-sudo ldconfig /usr/local/lib
-rm -rf "protobuf-21.1"
+sudo ldconfig ${HOME}/.local/lib
+rm -rf "../protobuf-21.1"

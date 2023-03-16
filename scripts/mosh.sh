@@ -1,7 +1,10 @@
 #!/bin/bash
 
 if command -v mosh &>/dev/null; then
-	echo "you have installed mosh, exiting now"
+	mosh_version=$(mosh -v | head -n 1| awk '{print $2}')
+	if [[ "${mosh_version}" > "1.3.2" ]]; then
+		echo "you have installed mosh latest enough(>=1.3.2), which supports vim true color, exiting now"
+	fi
 	exit 0
 fi
 
@@ -31,8 +34,16 @@ echo "mosh repo updated"
 echo "gen configure"
 ./autogen.sh
 echo "configuring"
-./configure
+if [[ $1 -eq "global" ]]; then
+	PKG_CONFIG_PATH=${HOME}/.local/lib/pkgconfig PROTOC=${HOME}/.local/bin/protoc ./configure
+else
+	PKG_CONFIG_PATH=${HOME}/.local/lib/pkgconfig PROTOC=${HOME}/.local/bin/protoc ./configure --prefix=${HOME}/.local
+fi
 echo "building"
 make
 echo "installing"
-sudo make install
+if [[ $1 -eq "global" ]]; then
+	sudo make install
+else
+	make install
+fi
