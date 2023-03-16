@@ -45,7 +45,6 @@ if command -v nvim &>/dev/null; then
 fi
 
 echo "building neovim"
-make distclean
 make CMAKE_BUILD_TYPE=Release
 echo "neovim built"
 echo "installing neovim"

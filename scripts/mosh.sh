@@ -8,6 +8,8 @@ fi
 script=$(readlink -f "$0")
 base_dir=$(dirname "$script")
 
+. "${base_dir}"/lsp/utils.sh
+
 bash "${base_dir}"/protobuf.sh
 
 echo "installing deps"
