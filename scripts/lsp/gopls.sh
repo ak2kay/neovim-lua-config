@@ -31,15 +31,15 @@ downloadGolang() {
 
 	if [[ ${machine} = "Linux" ]]; then
 		case "${arch}" in
-		x86_64) download_link="https://go.dev/dl/go1.18.1.linux-amd64.tar.gz" ;;
-		arm) download_link="https://go.dev/dl/go1.18.1.linux-arm64.tar.gz" ;;
-		x32) download_link="https://go.dev/dl/go1.18.1.linux-386.tar.gz" ;;
+		x86_64) download_link="https://go.dev/dl/go1.19.7.linux-amd64.tar.gz" ;;
+		arm) download_link="https://go.dev/dl/go1.19.7.linux-arm64.tar.gz" ;;
+		x32) download_link="https://go.dev/dl/go1.19.7.linux-386.tar.gz" ;;
 		esac
 	fi
 	if [[ ${machine} = "Mac" ]]; then
 		case "${arch}" in
-		x86_64) download_link="https://go.dev/dl/go1.18.1.darwin-amd64.tar.gz" ;;
-		arm) download_link="https://go.dev/dl/go1.18.1.darwin-arm64.tar.gz" ;;
+		x86_64) download_link="https://go.dev/dl/go1.19.7.darwin-amd64.tar.gz" ;;
+		arm) download_link="https://go.dev/dl/go1.19.7.darwin-arm64.tar.gz" ;;
 		esac
 	fi
 	if [[ -z "${download_link}" ]]; then
