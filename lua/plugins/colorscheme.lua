@@ -43,7 +43,7 @@ return {
       config = function()
          vim.cmd [[colorscheme kanagawa]]
       end,
-      enabled = true,
+      enabled = false,
    },
    {
       "rose-pine/neovim",
@@ -51,7 +51,7 @@ return {
       config = function()
          vim.cmd "colorscheme rose-pine"
       end,
-      enabled = false,
+      enabled = true,
    },
    {
       "shaunsingh/nord.nvim",
