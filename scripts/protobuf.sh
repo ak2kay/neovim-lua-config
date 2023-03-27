@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -o errexit
-set -o nounset
 set -o pipefail
 
 script=$(readlink -f "$0")
@@ -31,12 +30,21 @@ rm -rf ${download_name}
 cd "protobuf-21.1"
 echo "gen configure"
 ./autogen.sh
-echo "configuring"
-./configure --prefix=${HOME}/.local
-echo "building"
-make
-echo "installing"
-make install
+if [[ $1 = "global" ]]; then
+	echo "configuring"
+	./configure
+	echo "making"
+	make -j $(($(nproc)/2))
+	echo "installing"
+	sudo make install
+else
+	echo "configuring"
+	./configure --prefix="${HOME}/.local"
+	echo "making"
+	make -j $(($(nproc)/2))
+	echo "installing"
+	make install
+fi
 echo "refresh ldconfig"
 sudo ldconfig ${HOME}/.local/lib
 rm -rf "../protobuf-21.1"

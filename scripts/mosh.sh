@@ -13,7 +13,7 @@ base_dir=$(dirname "$script")
 
 . "${base_dir}"/lsp/utils.sh
 
-bash "${base_dir}"/protobuf.sh
+bash "${base_dir}"/protobuf.sh "$@"
 
 echo "installing deps"
 sudo apt install -y libssl-dev zlib1g-dev libncurses5-dev
@@ -40,9 +40,9 @@ else
 	PKG_CONFIG_PATH=${HOME}/.local/lib/pkgconfig PROTOC=${HOME}/.local/bin/protoc ./configure --prefix=${HOME}/.local
 fi
 echo "building"
-make
+make -j $(($(nproc)/2))
 echo "installing"
-if [[ $1 -eq "global" ]]; then
+if [[ $1 = "global" ]]; then
 	sudo make install
 else
 	make install

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -o errexit
-set -o nounset
 set -o pipefail
 
 script=$(readlink -f "$0")
@@ -38,6 +37,20 @@ git checkout $(git describe --abbrev=0 --tags)
 
 echo "building tmux"
 sh autogen.sh
-./configure && make
-sudo make install
+echo "configure"
+if [[ $1 = "global" ]]; then
+	echo "configuring"
+	./configure
+	echo "making"
+	make -j $(($(nproc)/2))
+	echo "installing"
+	sudo make install
+else
+	echo "configuring"
+	./configure --prefix="${HOME}/.local"
+	echo "making"
+	make -j $(($(nproc)/2))
+	echo "installing"
+	make install
+fi
 echo "tmux $(git describe --abbrev=0 --tags) installed"
