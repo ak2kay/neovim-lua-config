@@ -25,7 +25,7 @@ local sources = {
    -- b.formatting.fixjson, -- A shell parser, formatter, and interpreter with bash support.
    -- b.formatting.black.with { extra_args = { "--fast" } }, -- The uncompromising Python code formatter.
    -- b.formatting.isort, -- Python utility / library to sort imports alphabetically and automatically separate them into sections and by type.
-   -- b.formatting.stylua, -- An opinionated code formatter for Lua.
+   b.formatting.stylua, -- An opinionated code formatter for Lua.
    b.formatting.gofumpt, -- Enforce a stricter format than gofmt, while being backwards compatible. That is, gofumpt is happy with a subset of the formats that gofmt is happy with.
    b.formatting.goimports, -- Updates your Go import lines, adding missing ones and removing unreferenced ones.
 

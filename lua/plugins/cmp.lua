@@ -13,13 +13,13 @@ local M = {
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "L3MON4D3/LuaSnip",
       {
-      "zbirenbaum/copilot-cmp",
+         "zbirenbaum/copilot-cmp",
          dependencies = {
             "zbirenbaum/copilot.lua",
          },
-         config = function ()
-             require("copilot_cmp").setup()
-         end
+         config = function()
+            require("copilot_cmp").setup()
+         end,
       },
    },
 }
@@ -65,7 +65,8 @@ function M.config()
    end
 
    cmp.setup {
-      completion = { --[[completeopt = "menu,menuone,noinsert",]]
+      completion = {
+         --[[completeopt = "menu,menuone,noinsert",]]
          keyword_length = 2,
          -- autocomplete = true,
       },
