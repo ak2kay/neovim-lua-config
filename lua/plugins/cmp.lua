@@ -81,6 +81,7 @@ function M.config()
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             -- Source
             vim_item.menu = ({
+               copilot = "[COPILOT]",
                nvim_lsp = "[LSP]",
                luasnip = "[Snip]",
                buffer = "[Buffer]",
@@ -147,9 +148,10 @@ function M.config()
          end, { "i", "s", "c" }),
       },
       sources = {
+         { name = "copilot", group_index = 2 },
          { name = "buffer", max_item_count = 4, priority = 3 },
          { name = "treesitter", max_item_count = 4, priority = 1 },
-         { name = "nvim_lsp", max_item_count = 6, priority = 2 },
+         { name = "nvim_lsp", max_item_count = 6, group_index = 2, priority = 2 },
          { name = "nvim_lua", max_item_count = 4, priority = 2 },
          { name = "luasnip", max_item_count = 2, priority = 5 },
          { name = "path", max_item_count = 2, priority = 4 },
