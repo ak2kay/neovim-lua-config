@@ -12,6 +12,15 @@ local M = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "L3MON4D3/LuaSnip",
+      {
+      "zbirenbaum/copilot-cmp",
+         dependencies = {
+            "zbirenbaum/copilot.lua",
+         },
+         config = function ()
+             require("copilot_cmp").setup()
+         end
+      },
    },
 }
 

@@ -88,5 +88,4 @@ return {
    },
    { "hotoo/pangu.vim", ft = { "markdown" } },
    { "tpope/vim-fugitive", event = "BufRead" },
-   "github/copilot.vim",
 }
