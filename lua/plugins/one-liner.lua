@@ -16,7 +16,7 @@ return {
       end,
    },
    {
-      "kyazdani42/nvim-web-devicons",
+      "nvim-tree/nvim-web-devicons",
       config = function()
          require("nvim-web-devicons").setup { default = true }
       end,
@@ -72,7 +72,7 @@ return {
    },
    {
       "folke/trouble.nvim",
-      dependencies = "kyazdani42/nvim-web-devicons",
+      dependencies = "nvim-tree/nvim-web-devicons",
       cmd = { "TroubleToggle", "Trouble" },
       config = function()
          require("trouble").setup { _diagnostic_signs = true }

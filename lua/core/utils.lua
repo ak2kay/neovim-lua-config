@@ -1,18 +1,5 @@
 _G.utils_g = {}
 
--- merge default/user plugin tables
-utils_g.merge_plugins = function(default_plugins)
-   local final_table = {}
-
-   for key, _ in pairs(default_plugins) do
-      default_plugins[key][1] = key
-
-      final_table[#final_table + 1] = default_plugins[key]
-   end
-
-   return final_table
-end
-
 utils_g.set_keymap = function(mode, lhs, rhs, opts)
    local options = { noremap = true, silent = true }
    if opts then
@@ -37,6 +24,32 @@ utils_g.packer_lazy_load = function(plugin, timer)
          require("packer").loader(plugin)
       end, timer)
    end
+end
+
+-- print table
+utils_g.print_table = function(tbl, indent)
+  if not indent then indent = 0 end
+  local toprint = string.rep(" ", indent) .. "{\r\n"
+  indent = indent + 2 
+  for k, v in pairs(tbl) do
+    toprint = toprint .. string.rep(" ", indent)
+    if (type(k) == "number") then
+      toprint = toprint .. "[" .. k .. "] = "
+    elseif (type(k) == "string") then
+      toprint = toprint  .. k ..  "= "   
+    end
+    if (type(v) == "number") then
+      toprint = toprint .. v .. ",\r\n"
+    elseif (type(v) == "string") then
+      toprint = toprint .. "\"" .. v .. "\",\r\n"
+    elseif (type(v) == "table") then
+      toprint = toprint .. utils_g.print_table(v, indent + 2) .. ",\r\n"
+    else
+      toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+    end
+  end
+  toprint = toprint .. string.rep(" ", indent-2) .. "}"
+  return toprint
 end
 
 utils_g.log = function(msg, hl, name)

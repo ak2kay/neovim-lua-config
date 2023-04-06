@@ -73,46 +73,8 @@ local function on_attach(client, bufnr)
    require("plugins.lsp.nullls.formatters").setup(client, bufnr)
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) -- for nvim-cmp
-
-local default_opts = {
-   on_attach = on_attach,
-   capabilities = capabilities,
-   flags = {
-      debounce_text_changes = 150,
-   },
-}
-
-local function merge_opts(server_name)
-   local custom_opts = {}
-   if servers[server_name] ~= nil then
-      custom_opts = servers[server_name]
-   end
-   return vim.tbl_deep_extend("force", default_opts, custom_opts)
-end
 
 local function setup()
-   -- Make sure call neodev setup earlier than lspconfig
-   require("neodev").setup {}
-   -- Setup LSP handlers
-   require("plugins.lsp.handlers").setup()
-
-   -- Setup LSP hanlers using mason
-   require("mason-lspconfig").setup_handlers {
-      -- The first entry (without a key) will be the default handler
-      -- and will be called for each installed server that doesn't have
-      -- a dedicated handler.
-      function(server_name) -- default handler (optional)
-         require("lspconfig")[server_name].setup { merge_opts(server_name) }
-      end,
-      -- Next, you can provide a dedicated handler for specific servers.
-      -- For example, a handler override for the `rust_analyzer`:
-      ["rust_analyzer"] = function()
-         require("rust-tools").setup { merge_opts "rust_analyzer" }
-      end,
-   }
    -- null-ls
    require("plugins.lsp.nullls.nullls").setup(default_opts)
 end

@@ -1,6 +1,6 @@
 local M = {
    "nvim-lualine/lualine.nvim",
-   dependencies = { "kyazdani42/nvim-web-devicons" },
+   dependencies = { "nvim-tree/nvim-web-devicons" },
 }
 
 local function separator()
@@ -77,12 +77,12 @@ end
 function M.config()
    ins_left { separator }
 
-   -- ins_left {
-   --     -- Lsp server name
-   --     lsp_client,
-   --     icon = " LSP:",
-   --     color = {fg = "#000000", gui = "bold"}
-   -- }
+   ins_left {
+       -- Lsp server name
+       lsp_client,
+       icon = " LSP:",
+       color = {fg = "#000000", gui = "bold"}
+   }
 
    require("lualine").setup(config)
 end

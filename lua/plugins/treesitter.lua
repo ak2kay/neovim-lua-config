@@ -1,107 +1,54 @@
-local M = {
+return {
    "nvim-treesitter/nvim-treesitter",
-   event = "BufRead",
-   build = ":TSUpdate",
-   dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      "andymass/vim-matchup",
+   module = true,
+   event = { "BufReadPost", "BufNewFile" },
+   cmd = {
+      "TSInstall",
+      "TSInstallInfo",
+      "TSUpdate",
+      "TSBufEnable",
+      "TSBufDisable",
+      "TSEnable",
+      "TSDisable",
+      "TSModuleInfo",
    },
+   dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      {
+         "lukas-reineke/indent-blankline.nvim",
+         config = function()
+            local indent_blankline = require "indent_blankline"
+
+            indent_blankline.setup {
+               show_current_context = true,
+               indent_blankline_char = "▏",
+               indent_blankline_show_trailing_blankline_indent = false,
+               indent_blankline_show_first_indent_level = true,
+               indent_blankline_use_treesitter = true,
+               indent_blankline_show_current_context = true,
+               indent_blankline_buftype_exclude = { "terminal", "nofile" },
+               indent_blankline_filetype_exclude = {
+                  "help",
+                  "NvimTree",
+               },
+            }
+         end,
+      },
+   },
+   build = ":TSUpdate",
+   config = function()
+      local configs = require "nvim-treesitter.configs"
+
+      configs.setup {
+         ensure_installed = { "cpp", "lua", "c", "go", "python", "java" }, -- one of "all" or a list of languages
+         highlight = {
+            enable = true, -- false will disable the whole extension
+            disable = "", -- list of language that will be disabled
+         },
+         autopairs = {
+            enable = true,
+         },
+         indent = { enable = false, disable = {} },
+      }
+   end,
 }
-
-function M.config()
-   require("nvim-treesitter.configs").setup {
-      -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-      ensure_installed = { "go", "lua", "typescript", "vim" },
-
-      -- Install languages synchronously (only applied to `ensure_installed`)
-      sync_install = false,
-
-      highlight = {
-         -- `false` will disable the whole extension
-         enable = true,
-      },
-
-      incremental_selection = {
-         enable = true,
-         keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm",
-         },
-      },
-
-      indent = { enable = true },
-
-      -- vim-matchup
-      matchup = { enable = true },
-
-      -- nvim-treesitter-textobjects
-      textobjects = {
-         select = {
-            enable = true,
-
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-
-            keymaps = {
-               -- You can use the capture groups defined in textobjects.scm
-               ["af"] = "@function.outer",
-               ["if"] = "@function.inner",
-               ["ac"] = "@class.outer",
-               ["ic"] = "@class.inner",
-            },
-         },
-
-         swap = {
-            enable = true,
-            swap_next = { ["<leader>cx"] = "@parameter.inner" },
-            swap_previous = { ["<leader>cX"] = "@parameter.inner" },
-         },
-
-         move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-               ["]m"] = "@function.outer",
-               ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-               ["]M"] = "@function.outer",
-               ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-               ["[m"] = "@function.outer",
-               ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-               ["[M"] = "@function.outer",
-               ["[]"] = "@class.outer",
-            },
-         },
-
-         -- lsp_interop = {
-         --   enable = true,
-         --   border = "none",
-         --   peek_definition_code = {
-         --     ["<leader>cf"] = "@function.outer",
-         --     ["<leader>cF"] = "@class.outer",
-         --   },
-         -- },
-         --
-      },
-
-      -- endwise
-      endwise = { enable = true },
-
-      -- autotag
-      autotag = { enable = true },
-
-      -- context_commentstring
-      context_commentstring = { enable = true, enable_autocmd = false },
-   }
-end
-
-return M

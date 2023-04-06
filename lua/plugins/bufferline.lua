@@ -1,42 +1,42 @@
-local M = {
-   "akinsho/nvim-bufferline.lua",
-   event = "BufReadPre",
-   dependencies = { "kyazdani42/nvim-web-devicons" },
+return {
+   "akinsho/bufferline.nvim",
+   event = { "BufReadPost", "BufNewFile" },
+   dependencies = { "nvim-tree/nvim-web-devicons" },
+   config = function()
+      local bufferline = require "bufferline"
+
+      bufferline.setup {
+         options = {
+            mode = "buffers", -- set to "tabs" to only show tabpages instead
+            diagnostics = "nvim_lsp",
+            close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+            right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
+            offsets = {
+               { filetype = "NvimTree", text = "File Explorer", highlight = "Directory", padding = 1 },
+               { filetype = "lspsagaoutline", text = "Code Outline", highlight = "Directory", padding = 1 },
+            },
+            indicator = {
+               icon = "▎",
+            },
+            buffer_close_icon = "",
+            modified_icon = "●",
+            close_icon = "",
+            left_trunc_marker = "",
+            right_trunc_marker = "",
+            max_name_length = 18,
+            max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+            tab_size = 18,
+         },
+         highlights = {
+            buffer_selected = {
+               bold = false,
+               italic = false,
+            },
+            tab_selected = {
+               bold = false,
+               italic = false,
+            },
+         },
+      }
+   end,
 }
-
-function M.config()
-   local bufferline = require "bufferline"
-
-   bufferline.setup {
-      options = {
-         mode = "buffers",
-         numbers = "buffer_id",
-         diagnostics = "nvim_lsp",
-         show_tab_indicators = true,
-         show_buffer_close_icons = false,
-         show_close_icon = false,
-         color_icons = true,
-         custom_filter = function(buf_number, buf_numbers)
-            local tab_num = 0
-            for _ in pairs(vim.api.nvim_list_tabpages()) do
-               tab_num = tab_num + 1
-            end
-
-            if tab_num > 1 then
-               if not not vim.api.nvim_buf_get_name(buf_number):find(vim.fn.getcwd(), 0, true) then
-                  return true
-               end
-            else
-               return true
-            end
-         end,
-         sort_by = function(buffer_a, buffer_b)
-            local mod_a = ((vim.loop.fs_stat(buffer_a.path) or {}).mtime or {}).sec or 0
-            local mod_b = ((vim.loop.fs_stat(buffer_b.path) or {}).mtime or {}).sec or 0
-            return mod_a > mod_b
-         end,
-      },
-   }
-end
-
-return M

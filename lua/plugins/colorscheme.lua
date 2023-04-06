@@ -59,5 +59,6 @@ return {
          vim.cmd [[colorscheme nord]]
       end,
       enabled = true,
-   },
+   }
+   
 }

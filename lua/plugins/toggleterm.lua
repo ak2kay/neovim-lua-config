@@ -1,23 +1,34 @@
-local M = {
+return {
    "akinsho/toggleterm.nvim",
-   keys = { [[<C-\>]] },
-   cmd = { "ToggleTerm", "TermExec" },
+   module = true,
+   cmd = "ToggleTerm",
+   -- event = { "BufReadPost", "BufNewFile" },
+   config = function()
+      local toggleterm = require "toggleterm"
+
+      toggleterm.setup {
+         size = 10,
+         open_mapping = [[<c-\>]],
+         hide_numbers = true,
+         shade_terminals = false,
+         insert_mappings = true,
+         persist_size = true,
+         direction = "float",
+         close_on_exit = true,
+         shell = vim.o.shell,
+         autochdir = true,
+         highlights = {
+            NormalFloat = {
+               link = "Normal",
+            },
+            FloatBorder = {
+               link = "FloatBorder",
+            },
+         },
+         float_opts = {
+            border = "rounded",
+            winblend = 0,
+         },
+      }
+   end,
 }
-
-function M.config()
-   local tt = require "toggleterm"
-
-   tt.setup {
-      size = 20,
-      hide_numbers = true,
-      open_mapping = [[<C-\>]],
-      shade_filetypes = {},
-      shade_terminals = false,
-      shading_factor = 0.3,
-      start_in_insert = true,
-      persist_size = true,
-      direction = "horizontal",
-   }
-end
-
-return M
