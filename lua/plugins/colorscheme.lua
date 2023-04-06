@@ -51,13 +51,13 @@ return {
       config = function()
          vim.cmd "colorscheme rose-pine"
       end,
-      enabled = true,
+      enabled = false,
    },
    {
       "shaunsingh/nord.nvim",
       config = function()
          vim.cmd [[colorscheme nord]]
       end,
-      enabled = false,
+      enabled = true,
    },
 }
