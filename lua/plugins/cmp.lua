@@ -15,7 +15,15 @@ local M = {
       {
          "zbirenbaum/copilot-cmp",
          dependencies = {
-            "zbirenbaum/copilot.lua",
+            {
+               "zbirenbaum/copilot.lua",
+               config = function()
+                  require("copilot").setup({
+                     suggestion = { enabled = false },
+                     panel = { enabled = false },
+                  })
+               end
+            },
          },
          config = function()
             require("copilot_cmp").setup()
@@ -108,7 +116,7 @@ function M.config()
          ["<C-u>"] = cmp.mapping {
             i = function(fallback)
                if luasnip.choice_active() then
-                  require "luasnip.extras.select_choice"()
+                  require "luasnip.extras.select_choice" ()
                else
                   fallback()
                end
@@ -149,13 +157,13 @@ function M.config()
          end, { "i", "s", "c" }),
       },
       sources = {
-         { name = "copilot", group_index = 2 },
-         { name = "buffer", max_item_count = 4, priority = 3 },
-         { name = "treesitter", max_item_count = 4, priority = 1 },
-         { name = "nvim_lsp", max_item_count = 6, group_index = 2, priority = 2 },
-         { name = "nvim_lua", max_item_count = 4, priority = 2 },
-         { name = "luasnip", max_item_count = 2, priority = 5 },
-         { name = "path", max_item_count = 2, priority = 4 },
+         { name = "copilot",                group_index = 2 },
+         { name = "buffer",                 max_item_count = 4, priority = 3 },
+         { name = "treesitter",             max_item_count = 4, priority = 1 },
+         { name = "nvim_lsp",               max_item_count = 6, group_index = 2, priority = 2 },
+         { name = "nvim_lua",               max_item_count = 4, priority = 2 },
+         { name = "luasnip",                max_item_count = 2, priority = 5 },
+         { name = "path",                   max_item_count = 2, priority = 4 },
          { name = "nvim_lsp_signature_help" },
          {
             name = "look",
