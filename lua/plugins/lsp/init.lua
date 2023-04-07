@@ -76,7 +76,6 @@ return {
                      if require_ok then
                         opts = vim.tbl_deep_extend("force", server, opts)
                      end
-                     print(server_name)
                      lspconfig[server_name].setup(opts)
                   end
                end,

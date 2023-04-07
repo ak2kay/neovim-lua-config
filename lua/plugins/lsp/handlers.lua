@@ -11,8 +11,6 @@ local function lsp_keymaps(client, bufnr)
    keymap("n", "[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>")
    keymap("n", "]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>")
 
-   print "set keymap for lsp"
-
    -- toggle buffer diagnostic
    local buf_diagnostics_active = true
    vim.keymap.set("n", "<leader>bd", function()
