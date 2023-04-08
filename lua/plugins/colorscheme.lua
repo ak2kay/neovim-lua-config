@@ -6,7 +6,7 @@ return {
          vim.o.background = "light"
          vim.cmd [[colorscheme zenwritten]]
       end,
-      enabled = false,
+      enabled = true,
    },
    {
       "whatsthatsmell/codesmell_dark.vim",
@@ -58,7 +58,20 @@ return {
       config = function()
          vim.cmd [[colorscheme nord]]
       end,
-      enabled = true,
+      enabled = false,
+   },
+   {
+      "arturgoms/moonbow.nvim",
+      config = function()
+         vim.cmd [[colorscheme moonbow]]
+      end,
+      enabled = false,
+   },
+   {
+      "ayu-theme/ayu-vim",
+      config = function()
+         vim.cmd [[colorscheme ayu]]
+      end,
+      enabled = false,
    }
-   
 }
