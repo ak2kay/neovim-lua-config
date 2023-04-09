@@ -56,6 +56,9 @@ opt.path:remove "/usr/include"
 opt.path:append "**"
 -- vim.cmd [[set path=.,,,$PWD/**]] -- Set the path directly
 
+-- better diff view, see: https://github.com/neovim/neovim/pull/14537
+vim.cmd [[set diffopt+=linematch:50]]
+
 opt.wildignorecase = true
 opt.wildignore:append "**/node_modules/*"
 opt.wildignore:append "**/.git/*"
