@@ -2,7 +2,7 @@
 
 ## pre prerequisites
 
-1. you should install neovim which version >= 0.8.0, you can use scripts in this repo to install the latest stable version of nvim.
+1. you should install neovim which version >= 0.9.0, you can use scripts in this repo to install the latest stable version of nvim.
    `./scripts/nvim.sh`
 
 ## playground
