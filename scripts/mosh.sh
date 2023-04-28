@@ -4,8 +4,8 @@ if command -v mosh &>/dev/null; then
 	mosh_version=$(mosh -v | head -n 1| awk '{print $2}')
 	if [[ "${mosh_version}" > "1.3.2" ]]; then
 		echo "you have installed mosh latest enough(>=1.3.2), which supports vim true color, exiting now"
-	fi
 	exit 0
+	fi
 fi
 
 script=$(readlink -f "$0")
